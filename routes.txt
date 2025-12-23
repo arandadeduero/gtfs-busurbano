@@ -1,0 +1,4 @@
+route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color
+1,bus_aranda,L1,Línea 1,Aranda,3,,F31212,121212
+2,bus_aranda,L2,Línea 2,Aranda - Políng.Ind. - Institutos,3,,05A0C7,121212
+3,bus_aranda,L3,Línea 3,Aranda - Sinovas - Urb. Costaján - Policía Nacional,3,,05C71C,121212
