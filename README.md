@@ -41,6 +41,13 @@ El servicio incluye las siguientes líneas:
 - **L2**: Línea 2 - Aranda - Polígono Industrial - Institutos
 - **L3**: Línea 3 - Aranda - Sinovas - Urb. Costaján - Policía Nacional
 
+## Descarga
+
+Puedes descargar la última versión del feed GTFS desde:
+
+- **[Releases de GitHub](../../releases/latest)**: Descarga el archivo `gtfs_YYYYMMDD.zip` de la última versión
+- **[Página web](https://willyaranda.github.io/gtfs-busurbano/)**: Accede a la web con información y enlace de descarga directo
+
 ## Uso
 
 Estos datos pueden ser utilizados para:

@@ -1,0 +1,41 @@
+name: Create GTFS Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "*.txt"
+
+permissions:
+  contents: write
+
+jobs:
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get current date
+        id: date
+        run: echo "date=$(date +'%Y%m%d')" >> $GITHUB_OUTPUT
+
+      - name: Create GTFS zip
+        run: |
+          zip gtfs_${{ steps.date.outputs.date }}.zip *.txt
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.date.outputs.date }}
+          name: Release ${{ steps.date.outputs.date }}
+          body: |
+            GTFS feed actualizado automáticamente
+            Fecha: ${{ steps.date.outputs.date }}
+          files: |
+            gtfs_${{ steps.date.outputs.date }}.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

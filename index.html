@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bus Urbano Aranda - Dataset GTFS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Roboto", "Helvetica", "Arial", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #e9f4f9;
+      }
+
+      header {
+        background: white;
+        color: #333;
+        padding: 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .header-image {
+        width: 350px;
+        height: auto;
+        display: block;
+        padding-left: 2rem;
+      }
+
+      .header-content {
+        padding: 2rem 0;
+        background: linear-gradient(
+          135deg,
+          rgba(60, 180, 229, 0.95) 0%,
+          rgba(0, 131, 193, 0.95) 100%
+        );
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .header-text {
+        flex: 1;
+      }
+
+      .header-content h1 {
+        color: white;
+      }
+
+      .header-content .subtitle {
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+        opacity: 0.9;
+      }
+
+      .download-section {
+        background: white;
+        margin: 2rem auto;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .download-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, #3cb4e5 0%, #0083c1 100%);
+        color: white;
+        padding: 1rem 2rem;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        font-size: 1.1rem;
+        transition: transform 0.2s, box-shadow 0.2s;
+        margin-top: 1rem;
+      }
+
+      .download-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 15px rgba(60, 180, 229, 0.4);
+      }
+
+      .content {
+        background: white;
+        margin: 2rem auto;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .content h2 {
+        color: #0083c1;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        font-size: 1.8rem;
+      }
+
+      .content h3 {
+        color: #3cb4e5;
+        margin-top: 1.5rem;
+        margin-bottom: 0.8rem;
+        font-size: 1.3rem;
+      }
+
+      .content ul {
+        margin-left: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .content li {
+        margin-bottom: 0.5rem;
+      }
+
+      .content strong {
+        color: #0083c1;
+      }
+
+      .content code {
+        background: #f4f4f4;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-family: "Courier New", monospace;
+      }
+
+      .content a {
+        color: #0083c1;
+        text-decoration: none;
+      }
+
+      .content a:hover {
+        text-decoration: underline;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 0;
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .footer-logo {
+        width: 60px;
+        height: auto;
+        margin-bottom: 1rem;
+      }
+
+      footer a {
+        color: #0083c1;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      .badge {
+        display: inline-block;
+        background: #3cb4e5;
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        margin: 0.2rem;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+
+      .info-card {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 5px;
+        border-left: 4px solid #3cb4e5;
+      }
+
+      .info-card strong {
+        display: block;
+        margin-bottom: 0.5rem;
+      }
+
+      #latest-release {
+        font-style: italic;
+        color: #666;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <img
+          src="images/concejalia.jpg"
+          alt="Concejalia de Aranda de Duero"
+          class="header-image"
+        />
+        <div class="header-text">
+          <h1>🚌 Bus Urbano Aranda</h1>
+          <p class="subtitle">
+            Dataset GTFS del transporte público de Aranda de Duero
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="download-section">
+        <h2>📦 Descarga el Dataset GTFS</h2>
+        <p>Obtén la última versión del feed GTFS en formato ZIP</p>
+        <a href="#" id="download-link" class="download-btn"
+          >⬇️ Descargar GTFS</a
+        >
+        <p id="latest-release" style="margin-top: 1rem">
+          Cargando última versión...
+        </p>
+      </div>
+
+      <div class="content">
+        <h2>Sobre el servicio</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <strong>Operador:</strong>
+            Dávila Autocares
+          </div>
+          <div class="info-card">
+            <strong>Zona:</strong>
+            Aranda de Duero
+          </div>
+          <div class="info-card">
+            <strong>Web:</strong>
+            <a href="https://busurbanoaranda.com/" target="_blank"
+              >busurbanoaranda.com</a
+            >
+          </div>
+          <div class="info-card">
+            <strong>Vigencia:</strong>
+            Del 1 de diciembre de 2025 al 31 de diciembre de 2026
+          </div>
+        </div>
+
+        <h2>¿Qué es GTFS?</h2>
+        <p>
+          GTFS (General Transit Feed Specification) es un formato estándar
+          internacional para datos de transporte público que permite a los
+          desarrolladores crear aplicaciones de planificación de viajes y a los
+          usuarios consultar horarios e información del servicio.
+        </p>
+
+        <h2>Archivos incluidos</h2>
+        <p>
+          Este dataset contiene los siguientes archivos conforme a la
+          especificación GTFS:
+        </p>
+
+        <h3>Archivos obligatorios</h3>
+        <ul>
+          <li>
+            <strong><code>agency.txt</code></strong
+            >: Información sobre la agencia de transporte (nombre, URL, zona
+            horaria, idioma, contacto).
+          </li>
+          <li>
+            <strong><code>stops.txt</code></strong
+            >: Información sobre las paradas (ubicación, nombre,
+            identificadores).
+          </li>
+          <li>
+            <strong><code>routes.txt</code></strong
+            >: Información sobre las líneas de autobús (nombre, tipo, colores,
+            descripción).
+          </li>
+          <li>
+            <strong><code>trips.txt</code></strong
+            >: Viajes individuales de cada línea (identificadores, dirección,
+            calendario).
+          </li>
+          <li>
+            <strong><code>stop_times.txt</code></strong
+            >: Horarios de llegada y salida en cada parada para cada viaje.
+          </li>
+          <li>
+            <strong><code>calendar.txt</code></strong
+            >: Calendario de servicio regular (días de la semana que opera cada
+            servicio).
+          </li>
+        </ul>
+
+        <h3>Archivos opcionales</h3>
+        <ul>
+          <li>
+            <strong><code>calendar_dates.txt</code></strong
+            >: Excepciones al calendario regular (días festivos, cambios de
+            servicio).
+          </li>
+          <li>
+            <strong><code>frequencies.txt</code></strong
+            >: Información sobre la frecuencia de paso cuando el servicio opera
+            con intervalos regulares.
+          </li>
+          <li>
+            <strong><code>shapes.txt</code></strong
+            >: Representación geográfica del trazado de las rutas (coordenadas
+            GPS).
+          </li>
+          <li>
+            <strong><code>feed_info.txt</code></strong
+            >: Metadatos del feed (versión, vigencia, editor).
+          </li>
+        </ul>
+
+        <h2>Líneas disponibles</h2>
+        <div>
+          <span class="badge">L1 - Aranda</span>
+          <span class="badge"
+            >L2 - Aranda - Polígono Industrial - Institutos</span
+          >
+          <span class="badge"
+            >L3 - Aranda - Sinovas - Urb. Costaján - Policía Nacional</span
+          >
+        </div>
+
+        <h2>Uso</h2>
+        <p>Estos datos pueden ser utilizados para:</p>
+        <ul>
+          <li>Aplicaciones de planificación de viajes</li>
+          <li>Integración en mapas y navegadores</li>
+          <li>Análisis de rutas y cobertura</li>
+          <li>Desarrollo de aplicaciones móviles de transporte público</li>
+          <li>
+            Integración con servicios como Google Maps, Apple Maps, Transit App,
+            etc.
+          </li>
+        </ul>
+
+        <h2>Recursos adicionales</h2>
+        <ul>
+          <li>
+            <a href="https://gtfs.org/" target="_blank"
+              >Especificación GTFS oficial</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://developers.google.com/transit/gtfs/reference"
+              target="_blank"
+              >GTFS Reference</a
+            >
+          </li>
+          <li>
+            <a href="https://gtfs-validator.mobilitydata.org/" target="_blank"
+              >Validador GTFS</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <a href="https://www.arandadeduero.es" target="_blank">
+          <img
+            src="images/escudo.jpg"
+            alt="Escudo Aranda de Duero"
+            class="footer-logo"
+          />
+        </a>
+        <p>Última actualización: Diciembre 2025</p>
+        <p style="margin-top: 0.5rem">
+          <a href="https://www.arandadeduero.es" target="_blank"
+            >www.arandadeduero.es</a
+          >
+          |
+          <a href="https://github.com" target="_blank">Ver en GitHub</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Fetch the latest release from GitHub API
+      async function fetchLatestRelease() {
+        try {
+          // Extract owner and repo from the current URL
+          const owner = "arandadeduero"; // Replace with actual owner if known
+          const repo = "gtfs-busurbano"; // Replace with actual repo if known
+
+          // Try to get repo info from the page meta or fallback
+          const apiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
+
+          const response = await fetch(apiUrl);
+          if (response.ok) {
+            const release = await response.json();
+            const asset = release.assets.find((a) => a.name.endsWith(".zip"));
+
+            if (asset) {
+              document.getElementById("download-link").href =
+                asset.browser_download_url;
+              document.getElementById(
+                "latest-release"
+              ).textContent = `Versión: ${release.tag_name} - ${new Date(
+                release.published_at
+              ).toLocaleDateString("es-ES")}`;
+            }
+          } else {
+            // If API fails, try to construct the URL manually
+            document.getElementById("latest-release").textContent =
+              "Consulta la sección de Releases en GitHub para descargar la última versión";
+            document.getElementById(
+              "download-link"
+            ).href = `https://github.com/${owner}/${repo}/releases/latest`;
+          }
+        } catch (error) {
+          console.error("Error fetching release:", error);
+          document.getElementById("latest-release").textContent =
+            "Consulta la sección de Releases en GitHub";
+          // Set a fallback link to releases page
+          const owner = "arandadeduero";
+          const repo = "gtfs-busurbano";
+          document.getElementById(
+            "download-link"
+          ).href = `https://github.com/${owner}/${repo}/releases/latest`;
+        }
+      }
+
+      // Load latest release on page load
+      fetchLatestRelease();
+    </script>
+  </body>
+</html>
