@@ -24,7 +24,7 @@ jobs:
 
       - name: Create GTFS zip
         run: |
-          zip gtfs_${{ steps.date.outputs.date }}.zip *.txt
+          zip latest.zip *.txt
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
@@ -35,7 +35,7 @@ jobs:
             GTFS feed actualizado automáticamente
             Fecha: ${{ steps.date.outputs.date }}
           files: |
-            gtfs_${{ steps.date.outputs.date }}.zip
+            latest.zip
           draft: false
           prerelease: false
         env:
