@@ -1,2 +1,2 @@
 agency_id,agency_name,agency_url,agency_timezone,agency_lang,agency_phone,agency_fare_url,agency_email
-bus_aranda,davila autocares,https://busurbanoaranda.com/,Europe/Madrid,ES,,,
+bus_aranda,UTE Clemente-Dávila,https://busurbanoaranda.com/,Europe/Madrid,ES,947509594,https://busurbanoaranda.com/tarifas/,info@busurbanoaranda.com
