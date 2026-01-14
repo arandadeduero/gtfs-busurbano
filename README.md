@@ -46,7 +46,7 @@ El servicio incluye las siguientes líneas:
 Puedes descargar la última versión del feed GTFS desde:
 
 - **[Releases de GitHub](../../releases/latest)**: Descarga el archivo `gtfs_YYYYMMDD.zip` de la última versión
-- **[Página web](https://willyaranda.github.io/gtfs-busurbano/)**: Accede a la web con información y enlace de descarga directo
+- **[Página web](https://arandadeduero.github.io/gtfs-busurbano/)**: Accede a la web con información y enlace de descarga directo
 
 ## Uso
 
