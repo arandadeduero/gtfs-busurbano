@@ -1,6 +1,8 @@
 trip_id,route_id,shape_id,service_id,trip_headsign,direction_id,trip_short_name,block_id,wheelchair_accessible,bikes_allowed
 L1_LV_AMB,1,Linea_1,L-V,Aranda (Amb. Norte),,,,1,
+L1_LV_AMB_1,1,Linea_1,L-V,Aranda (Amb. Norte),,,,1,
 L1_LV_PLZ,1,Linea_1,L-V,Aranda (desde Plz. Mediterráneo),,,,1,
+L1_LV_PLZ_1,1,Linea_1,L-V,Aranda(desde Plz. Mediterráneo),,,,1,
 L1_S_AMB,1,Linea_1,S,Aranda (desde Amb. Norte),,,,1,
 L1_S_PLZ,1,Linea_1,S,Aranda (desde Plz. Mediterráneo),,,,1,
 L2_1_LV_AMB,2,Linea_2,L-V_Lectivo,Aranda - Polig. Ind. Institutos - Vela Zanetti (desde Amb. Norte),,,,1,
@@ -12,5 +14,7 @@ L2_3_LV_AMB,2,Linea_2_3,L-V,Aranda - Polig. Ind. (desde Amb. Norte),,,,1,
 L2_3_LV_PLZ,2,Linea_2_3,L-V,Aranda - Polig. Ind.  (desde Plz. Mediterráneo),,,,1,
 L2_4_LV_AMB,2,Linea_2_4,L-V_Lectivo,Aranda - Polig. Ind. Instituto - Empecinado - Jardines (desde Amb. Norte),,,,1,
 L3_LV_PLZ,3,Linea_3,L-V,Aranda - Sinovas - Urb. Cotaján - Policía Nacional (desde Plz. Mediterráneo),,,,1,
+
+
 
 
