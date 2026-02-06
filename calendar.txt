@@ -2,4 +2,3 @@ service_id,monday,tuesday,wednesday,thursday,friday,saturday,sunday,start_date,e
 L-V,1,1,1,1,1,0,0,20251201,20261209
 L-V_Lectivo,1,1,1,1,1,0,0,20260101,20281231
 S,0,0,0,0,0,1,0,20251201,20261209
-
