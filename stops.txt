@@ -32,7 +32,7 @@ stop_id,stop_name,stop_lat,stop_lon,stop_url,zone_id,location_type,parent_statio
 37,C. Juan de Juni 2 (instituto Sandoval y Rojas),41.67330394518754,-3.6724687256703987,,,0,,,1,,
 38,Plaza Jardines de Don Diego,41.67019397795403,-3.685853849499523,,,0,,,1,,
 39,C. San Francisco 51 (colegio Vera Cruz),41.67305559766331,-3.685494585589595,,,0,,,1,,
-4,Ctra. Sinovas, Bloques 3-5-7-9,41.67729619202959,-3.683519927673359,,,0,,,1,,
+4,Ctra. Sinovas Bloques 3-5-7-9,41.67729619202959,-3.683519927673359,,,0,,,1,,
 40,C. San Francisco 34,41.67513368982054,-3.6857963306707973,,,0,,,1,,
 41,Ctra. Sinovas S/N,41.67725707066322,-3.683491020059762,,,0,,,1,,
 42,Parque María Pacheco,41.67543947135064,-3.6828538534755637,,,0,,,1,,
