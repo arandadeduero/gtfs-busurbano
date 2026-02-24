@@ -1,2 +1,2 @@
-feed_publisher_name,feed_publisher_url,feed_lang,feed_start_date,feed_end_date,feed_version,feed_id,feed_contact_email,feed_contact_url
-Bus Urbano Aranda,https://busurbanoaranda.com/,Es,20251201,20261231,1,1,socialmedia@arandadeduero.es,https://busurbanoaranda.com/contacto
+feed_publisher_name,feed_publisher_url,feed_lang,feed_start_date,feed_end_date,feed_version,feed_contact_email,feed_contact_url
+Bus Urbano Aranda,https://busurbanoaranda.com/,Es,20251201,20261231,1,socialmedia@arandadeduero.es,https://busurbanoaranda.com/contacto
