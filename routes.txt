@@ -1,4 +1,4 @@
 route_id,agency_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color
-L1,bus_aranda,1,Aranda,,3,,F31212,FFFFFF
-L2,bus_aranda,2,Aranda - Poligono Industrial - Institutos,,3,,05A0C7,FFFFFF
-L3,bus_aranda,3,Aranda - Sinovas - Urbanizacion Costajan - Policia Nacional,,3,,05C71C,FFFFFF
+1,bus_aranda,L1,Aranda,,3,,F31212,FFFFFF
+2,bus_aranda,L2,Aranda - Poligono Industrial - Institutos,,3,,05A0C7,FFFFFF
+3,bus_aranda,L3,Aranda - Sinovas - Urbanizacion Costajan - Policia Nacional,,3,,05C71C,FFFFFF
