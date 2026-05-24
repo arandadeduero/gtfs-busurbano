@@ -27,10 +27,10 @@ jobs:
           zip latest.zip *.txt
 
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.date.outputs.date }}
-          name: Release ${{ steps.date.outputs.date }}
+          tag_name: v${{ steps.date.outputs.date }}-${{ github.run_number }}
+          name: Release ${{ steps.date.outputs.date }} (#${{ github.run_number }})
           body: |
             GTFS feed actualizado automáticamente
             Fecha: ${{ steps.date.outputs.date }}

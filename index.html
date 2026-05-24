@@ -312,7 +312,7 @@
       <div class="download-section">
         <h2>📦 Descarga el Dataset GTFS</h2>
         <p>Obtén la última versión del feed GTFS en formato ZIP</p>
-        <a href="#" id="download-link" class="download-btn"
+        <a href="https://github.com/arandadeduero/gtfs-busurbano/releases/latest" id="download-link" class="download-btn"
           >⬇️ Descargar GTFS</a
         >
         <p id="latest-release" style="margin-top: 1rem">
@@ -398,11 +398,6 @@
             servicio).
           </li>
           <li>
-            <strong><code>frequencies.txt</code></strong
-            >: Información sobre la frecuencia de paso cuando el servicio opera
-            con intervalos regulares.
-          </li>
-          <li>
             <strong><code>shapes.txt</code></strong
             >: Representación geográfica del trazado de las rutas (coordenadas
             GPS).
@@ -469,7 +464,7 @@
             class="footer-logo"
           />
         </a>
-        <p>Última actualización: Diciembre 2025</p>
+        <p>Actualizado automáticamente en cada release</p>
         <p style="margin-top: 0.5rem">
           <a href="https://www.arandadeduero.es" target="_blank"
             >www.arandadeduero.es</a
@@ -487,12 +482,9 @@
     <script>
       // Fetch the latest release from GitHub API
       async function fetchLatestRelease() {
+        const owner = "arandadeduero";
+        const repo = "gtfs-busurbano";
         try {
-          // Extract owner and repo from the current URL
-          const owner = "arandadeduero"; // Replace with actual owner if known
-          const repo = "gtfs-busurbano"; // Replace with actual repo if known
-
-          // Try to get repo info from the page meta or fallback
           const apiUrl = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
 
           const response = await fetch(apiUrl);
@@ -521,9 +513,6 @@
           console.error("Error fetching release:", error);
           document.getElementById("latest-release").textContent =
             "Consulta la sección de Releases en GitHub";
-          // Set a fallback link to releases page
-          const owner = "arandadeduero";
-          const repo = "gtfs-busurbano";
           document.getElementById(
             "download-link"
           ).href = `https://github.com/${owner}/${repo}/releases/latest`;

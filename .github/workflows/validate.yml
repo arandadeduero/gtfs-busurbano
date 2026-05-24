@@ -1,0 +1,71 @@
+name: Validate GTFS Feed
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "*.txt"
+  pull_request:
+    paths:
+      - "*.txt"
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Download gtfs-validator CLI
+        run: |
+          curl -sSL \
+            "https://github.com/MobilityData/gtfs-validator/releases/download/v8.0.1/gtfs-validator-v8.0.1-cli.jar" \
+            -o gtfs-validator-cli.jar
+
+      - name: Create GTFS zip
+        run: zip gtfs.zip *.txt
+
+      - name: Run GTFS validator
+        run: |
+          java -jar gtfs-validator-cli.jar \
+            -i gtfs.zip \
+            -o validation-output \
+            -c es
+
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gtfs-validation-report
+          path: validation-output/
+          retention-days: 30
+
+      - name: Fail on ERROR-level notices
+        run: |
+          ERROR_COUNT=$(jq '[.notices[] | select(.severity == "ERROR")] | length' validation-output/report.json)
+          echo "Validation errors found: $ERROR_COUNT"
+          if [ "$ERROR_COUNT" -gt 0 ]; then
+            echo ""
+            echo "ERROR notices:"
+            jq -r '.notices[] | select(.severity == "ERROR") | "  - \(.code) (\(.totalNotices) occurrence(s))"' \
+              validation-output/report.json
+            exit 1
+          fi
+          WARNING_COUNT=$(jq '[.notices[] | select(.severity == "WARNING")] | length' validation-output/report.json)
+          echo "Validation warnings: $WARNING_COUNT"
+          if [ "$WARNING_COUNT" -gt 0 ]; then
+            echo ""
+            echo "WARNING notices:"
+            jq -r '.notices[] | select(.severity == "WARNING") | "  - \(.code) (\(.totalNotices) occurrence(s))"' \
+              validation-output/report.json
+          fi
+          echo ""
+          echo "GTFS validation passed."
