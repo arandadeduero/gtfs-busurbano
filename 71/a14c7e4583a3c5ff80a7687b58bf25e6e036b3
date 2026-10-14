@@ -1,0 +1,23 @@
+osm/informe_comparacion.md
+  s_61e58bc6109fb9::t_c00e449320e268 20
+  s_61e58bc6109fb9::t_96de1bd56abcfd 88
+  s_61e58bc6109fb9::t_604f7030fb6ecd 1-19,21-87,89-99
+osm/aranda_bus_urbano.osm
+  s_61e58bc6109fb9::t_d010d97d33197f 1-3237
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "71a14c7e4583a3c5ff80a7687b58bf25e6e036b3",
+  "prompts": {},
+  "sessions": {
+    "s_61e58bc6109fb9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cda47068-19cc-4256-9c4d-dfd48dc17216",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Guillermo López Leal <guillermo.lopezleal@vonage.com>"
+    }
+  }
+}
