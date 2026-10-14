@@ -1,0 +1,25 @@
+index.html
+  s_61e58bc6109fb9::t_981f8805a6c292 9-10
+mapa.html
+  s_61e58bc6109fb9::t_981f8805a6c292 7-8
+fonts/outfit.css
+  s_61e58bc6109fb9::t_981f8805a6c292 1-11
+fonts/README.md
+  s_61e58bc6109fb9::t_981f8805a6c292 1-4
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "35ebfa71a5c453b11f328552484e2fae273ec752",
+  "prompts": {},
+  "sessions": {
+    "s_61e58bc6109fb9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cda47068-19cc-4256-9c4d-dfd48dc17216",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Guillermo López Leal <guillermo.lopezleal@vonage.com>"
+    }
+  }
+}
