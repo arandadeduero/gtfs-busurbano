@@ -270,18 +270,66 @@
     updateSvcInfo(); renderHorarios(); updateBuses();
   }
 
+  // ---------- Parada más cercana (geolocalización) ----------
+  let geo = { asked: false, nearest: null, dist: null, marker: null };
+  let drawStops = () => {};
+
+  function distanceM(lat1, lon1, lat2, lon2) {
+    const p = Math.PI / 180, k = Math.cos(((lat1 + lat2) / 2) * p);
+    return Math.hypot((lat2 - lat1) * 110574, (lon2 - lon1) * 111320 * k);
+  }
+
+  function locate() {
+    const msg = $("geo-msg");
+    if (!navigator.geolocation) { msg.textContent = "Tu navegador no permite geolocalización."; return; }
+    geo.asked = true;
+    msg.textContent = "Buscando tu ubicación…";
+    navigator.geolocation.getCurrentPosition((pos) => {
+      const { latitude: lat, longitude: lon } = pos.coords;
+      let best = null, bestD = Infinity;
+      Object.values(D.stops).forEach((s) => {
+        const d = distanceM(lat, lon, s.lat, s.lon);
+        if (d < bestD) { best = s; bestD = d; }
+      });
+      geo.nearest = best.stop_id;
+      geo.dist = Math.round(bestD);
+      if (geo.marker) map.removeLayer(geo.marker);
+      geo.marker = L.circleMarker([lat, lon], { radius: 8, color: "#fff", weight: 3, fillColor: "#1a73e8", fillOpacity: 1 })
+        .bindTooltip("Estás aquí").addTo(map);
+      msg.textContent = bestD > 3000
+        ? `La parada más cercana está a ${(bestD / 1000).toFixed(1)} km: parece que no estás en Aranda.`
+        : `Parada más cercana: ${best.stop_name} (${geo.dist} m)`;
+      $("q").value = "";
+      drawStops();
+      const el = document.querySelector(".stop-item.nearest");
+      if (el) { el.scrollIntoView({ block: "center" }); el.focus({ preventScroll: true }); }
+      map.fitBounds(L.latLngBounds([[lat, lon], [best.lat, best.lon]]).pad(0.5), { maxZoom: 17 });
+      best.marker.openPopup();
+    }, (err) => {
+      msg.textContent = err.code === 1
+        ? "Permiso de ubicación denegado. Puedes activarlo en el navegador y pulsar «Usar mi ubicación»."
+        : "No se ha podido obtener tu ubicación.";
+    }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
+  }
+
   function renderParadas() {
     const el = $("tab-paradas");
-    el.innerHTML = `<input type="search" id="q" placeholder="Buscar parada…" /><div id="stop-list" style="margin-top:.6rem"></div>`;
+    el.innerHTML = `<div class="row"><button id="locate" class="btn-geo">📍 Usar mi ubicación</button></div>
+      <p class="muted" id="geo-msg" style="margin-bottom:.6rem"></p>
+      <input type="search" id="q" placeholder="Buscar parada…" /><div id="stop-list" style="margin-top:.6rem"></div>`;
     const stops = Object.values(D.stops).sort((a, b) => a.stop_name.localeCompare(b.stop_name, "es"));
-    const draw = () => {
+    drawStops = () => {
       const q = $("q").value.trim().toLowerCase();
-      $("stop-list").innerHTML = stops.filter((s) => !q || s.stop_name.toLowerCase().includes(q)).map((s) =>
-        `<div class="stop-item" data-id="${s.stop_id}">${[...(D.stopRoutes[s.stop_id] || [])].sort().map(badge).join("")} ${esc(s.stop_name)}</div>`).join("")
-        || '<p class="muted">Sin resultados.</p>';
+      $("stop-list").innerHTML = stops.filter((s) => !q || s.stop_name.toLowerCase().includes(q) || s.stop_id === geo.nearest).map((s) => {
+        const near = s.stop_id === geo.nearest;
+        return `<div class="stop-item${near ? " nearest" : ""}" tabindex="0" data-id="${s.stop_id}">` +
+          `${[...(D.stopRoutes[s.stop_id] || [])].sort().map(badge).join("")} ${esc(s.stop_name)}` +
+          `${near ? `<span class="near-tag">📍 Más cercana · ${geo.dist} m</span>` : ""}</div>`;
+      }).join("") || '<p class="muted">Sin resultados.</p>';
     };
-    draw();
-    $("q").addEventListener("input", draw);
+    drawStops();
+    $("q").addEventListener("input", drawStops);
+    $("locate").addEventListener("click", locate);
     $("stop-list").addEventListener("click", (e) => {
       const it = e.target.closest(".stop-item");
       if (!it) return;
@@ -330,6 +378,7 @@
       document.querySelectorAll(".tabs button").forEach((x) => x.classList.toggle("active", x === b));
       document.querySelectorAll(".tab").forEach((t) => t.classList.toggle("active", t.id === "tab-" + b.dataset.tab));
       if (b.dataset.tab === "horarios") renderHorarios();
+      if (b.dataset.tab === "paradas" && !geo.asked) locate();
     }));
   }
 

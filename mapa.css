@@ -64,3 +64,9 @@ h4.pattern { font-size: .95rem; margin: .8rem 0 .4rem; color: #0083c1; }
 .arrow { background: none; border: 0; }
 .arrow svg { display: block; filter: drop-shadow(0 0 1px rgba(0,0,0,.5)); }
 #map.no-arrows .arrow { display: none; }
+.btn-geo { font: inherit; font-weight: 600; padding: .45rem .8rem; border: 0; border-radius: 5px;
+  background: #1a73e8; color: #fff; cursor: pointer; }
+.btn-geo:hover { background: #1558b0; }
+.stop-item.nearest { background: #e3f0ff; border-left: 4px solid #1a73e8; font-weight: 600; }
+.stop-item.nearest:focus { outline: 2px solid #1a73e8; }
+.near-tag { display: block; font-size: .78rem; font-weight: 600; color: #1a73e8; margin-top: .15rem; }
