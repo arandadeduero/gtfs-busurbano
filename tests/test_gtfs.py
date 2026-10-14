@@ -15,8 +15,6 @@ ROOT = Path(__file__).resolve().parent.parent
 # Anomalías conocidas pendientes de confirmar con la empresa. Se toleran
 # para que el test pase, pero cualquier tramo nuevo fallará.
 KNOWN_FAST_LEGS = {
-    ("L1_LV_AMB_1100", "26", "27"),
-    ("L1_LV_PLZ_1100", "26", "27"),
     ("L3_LV_PLZ_0815", "10", "11"),
     ("L3_LV_PLZ_1415", "10", "11"),
     ("L3_LV_PLZ_1945", "10", "11"),
@@ -225,6 +223,8 @@ class TestCalendar(GtfsTestCase):
     def test_calendar_dates_reference_services(self):
         ids = {c["service_id"] for c in self.calendar}
         for r in self.calendar_dates:
+            if r["exception_type"] == "1":
+                continue  # servicios definidos sólo con calendar_dates
             self.assertIn(r["service_id"], ids)
             self.assertIn(r["exception_type"], ("1", "2"))
             datetime.datetime.strptime(r["date"], "%Y%m%d")
@@ -266,7 +266,8 @@ class TestTrips(GtfsTestCase):
 
     def test_references_exist(self):
         routes = {r["route_id"] for r in self.routes}
-        services = {c["service_id"] for c in self.calendar}
+        services = ({c["service_id"] for c in self.calendar}
+                    | {r["service_id"] for r in self.calendar_dates if r["exception_type"] == "1"})
         for t in self.trips:
             self.assertIn(t["route_id"], routes, t["trip_id"])
             self.assertIn(t["service_id"], services, t["trip_id"])
@@ -290,8 +291,8 @@ class TestTrips(GtfsTestCase):
             m = re.match(r"^L(\d)_(LVLEC|LV|S)_(AMB|PLZ)_(\d{4})$", t["trip_id"])
             self.assertIsNotNone(m, t["trip_id"])
             self.assertEqual(m.group(1), t["route_id"], t["trip_id"])
-            svc = {"LVLEC": "L-V_Lectivo", "LV": "L-V", "S": "S"}[m.group(2)]
-            self.assertEqual(svc, t["service_id"], t["trip_id"])
+            svc = {"LVLEC": {"L-V_Lectivo"}, "LV": {"L-V", "L-V_NoLectivo"}, "S": {"S"}}[m.group(2)]
+            self.assertIn(t["service_id"], svc, t["trip_id"])
 
     def test_trip_id_time_matches_first_departure(self):
         for t in self.trips:
@@ -399,9 +400,7 @@ class TestStopTimes(GtfsTestCase):
             rows = self.times_by_trip[t["trip_id"]]
             key = (t["shape_id"], tuple(r["stop_id"] for r in rows))
             groups[key].append((t["trip_id"], secs(rows[-1]["arrival_time"]) - secs(rows[0]["departure_time"])))
-        known = {"L1_LV_AMB_1100", "L1_LV_PLZ_1100"}
         for key, items in groups.items():
-            items = [i for i in items if i[0] not in known]
             if len(items) < 3:
                 continue
             durs = [d for _, d in items]
@@ -483,6 +482,44 @@ class TestShapes(GtfsTestCase):
                 nxt = [c for c in candidates(t["shape_id"], r["stop_id"]) if c >= prev - 1]
                 self.assertTrue(nxt, f"{t['trip_id']} parada {r['stop_id']} fuera de orden en {t['shape_id']}")
                 prev = min(nxt)
+
+
+class TestServiceReplacement(GtfsTestCase):
+    """L2: los viajes lectivos sustituyen a los base en días lectivos."""
+
+    def active(self, date):
+        d = datetime.datetime.strptime(date, "%Y%m%d")
+        wd = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"][d.weekday()]
+        on = {c["service_id"] for c in self.calendar
+              if c["start_date"] <= date <= c["end_date"] and c[wd] == "1"}
+        for r in self.calendar_dates:
+            if r["date"] == date:
+                (on.add if r["exception_type"] == "1" else on.discard)(r["service_id"])
+        return on
+
+    def departures(self, date, route):
+        on = self.active(date)
+        return sorted(
+            (self.times_by_trip[t["trip_id"]][0]["departure_time"][:5],
+             "AMB" if "_AMB_" in t["trip_id"] else "PLZ")
+            for t in self.trips if t["route_id"] == route and t["service_id"] in on)
+
+    def test_l2_no_duplicate_departures_any_weekday(self):
+        d = datetime.date(2025, 12, 1)
+        while d <= datetime.date(2026, 12, 31):
+            dep = self.departures(d.strftime("%Y%m%d"), "2")
+            self.assertEqual(len(dep), len(set(dep)), f"{d} {dep}")
+            d += datetime.timedelta(1)
+
+    def test_l2_lectivo_day_has_one_departure_per_slot(self):
+        dep = self.departures("20261015", "2")
+        self.assertEqual([h for h, _ in dep if h < "15:00"].count("07:30"), 2)  # AMB + PLZ
+        self.assertEqual(len(dep), 9)
+
+    def test_l2_non_lectivo_day(self):
+        dep = self.departures("20260715", "2")
+        self.assertEqual(len(dep), 9)
+        self.assertNotIn(("14:20", "AMB"), dep)
 
 
 if __name__ == "__main__":

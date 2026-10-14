@@ -3,7 +3,7 @@
   "use strict";
 
   const DAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-  const SERVICE_NAMES = { "L-V": "Lunes a viernes", "L-V_Lectivo": "Lunes a viernes (lectivos)", S: "Sábados" };
+  const SERVICE_NAMES = { "L-V": "Lunes a viernes", "L-V_Lectivo": "Lunes a viernes (lectivos)", "L-V_NoLectivo": "Lunes a viernes (no lectivos)", S: "Sábados" };
   const $ = (id) => document.getElementById(id);
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 
