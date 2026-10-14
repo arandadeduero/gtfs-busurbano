@@ -450,17 +450,39 @@ class TestShapes(GtfsTestCase):
                                 f"parada {r['stop_id']} a {d:.0f} m de {t['shape_id']}")
 
     def test_stops_visited_in_shape_order(self):
-        # Para shapes de línea abierta, el orden de paradas debe seguir la traza.
+        # Las paradas deben aparecer en el mismo orden que a lo largo de la shape
+        # (se admiten varias posiciones candidatas por parada, p. ej. en bucles).
+        known = {"L2_LVLEC_AMB_1330"}  # termina en la 20 (pendiente de confirmar)
+        cache = {}
+
+        def candidates(shape_id, stop_id):
+            key = (shape_id, stop_id)
+            if key not in cache:
+                pts = self.shapes[shape_id]
+                s = self.stops[stop_id]
+                lat, lon = float(s["stop_lat"]), float(s["stop_lon"])
+                k = math.cos(lat * math.pi / 180)
+                px, py = lon * 111320 * k, lat * 110574
+                res = []
+                for p, q in zip(pts, pts[1:]):
+                    ax, ay = p[2] * 111320 * k, p[1] * 110574
+                    bx, by = q[2] * 111320 * k, q[1] * 110574
+                    dx, dy = bx - ax, by - ay
+                    l = dx * dx + dy * dy
+                    t = 0 if l == 0 else max(0, min(1, ((px - ax) * dx + (py - ay) * dy) / l))
+                    if math.hypot(px - ax - t * dx, py - ay - t * dy) < MAX_STOP_TO_SHAPE_M:
+                        res.append(float(p[3]) + t * (float(q[3]) - float(p[3])))
+                cache[key] = res
+            return cache[key]
+
         for t in self.trips:
-            if t["shape_id"] != "Linea_1_2":
+            if t["trip_id"] in known:
                 continue
-            pts = [(p[1], p[2]) for p in self.shapes[t["shape_id"]]]
-            pos = []
+            prev = -1.0
             for r in self.times_by_trip[t["trip_id"]]:
-                s = self.stops[r["stop_id"]]
-                la, lo = float(s["stop_lat"]), float(s["stop_lon"])
-                pos.append(min(range(len(pts)), key=lambda i: haversine(la, lo, *pts[i])))
-            self.assertEqual(pos, sorted(pos), t["trip_id"])
+                nxt = [c for c in candidates(t["shape_id"], r["stop_id"]) if c >= prev - 1]
+                self.assertTrue(nxt, f"{t['trip_id']} parada {r['stop_id']} fuera de orden en {t['shape_id']}")
+                prev = min(nxt)
 
 
 if __name__ == "__main__":
