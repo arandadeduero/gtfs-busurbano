@@ -37,9 +37,3 @@ stop_id,stop_name,stop_lat,stop_lon,location_type,wheelchair_boarding
 36,Carretera de Burgos (Policía Nacional),41.682727235359096,-3.6851407043172344,0,1
 37,Calle Juan de Juni 2 (instituto Sandoval y Rojas),41.67330394518754,-3.6724687256703987,0,1
 38,Plaza Jardines de Don Diego,41.67019397795403,-3.685853849499523,0,1
-39,Calle San Francisco 51 (colegio Vera Cruz),41.67305559766331,-3.685494585589595,0,1
-40,Calle San Francisco 34,41.67513368982054,-3.6857963306707973,0,1
-41,Carretera Sinovas sin numero,41.67725707066322,-3.683491020059762,0,1
-42,Parque María Pacheco,41.67543947135064,-3.6828538534755637,0,1
-43,Avenida El Ferial (esquina Calle Francisco Maldonado) (sentido contrario),41.674134730964965,-3.6824636355275118,0,1
-44,Calle Santiago (frente Ambulatorio Norte),41.67233526067423,-3.6796486877136374,0,1

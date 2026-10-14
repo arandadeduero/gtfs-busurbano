@@ -7,8 +7,8 @@ Datos de OSM consultados con Overpass el 2026-10-15. Relaciones existentes: **L�
 | | GTFS | OSM |
 |---|---|---|
 | Líneas | L1, L2, L3 | L1, L2 (**falta L3**) |
-| Paradas | 44 | 40 `highway=bus_stop` en el área (34 en las relaciones L1/L2) |
-| Paradas GTFS con nodo OSM a <40 m | 41 de 44 | |
+| Paradas | 38 | 40 `highway=bus_stop` en el área (34 en las relaciones L1/L2) |
+| Paradas GTFS con nodo OSM a <40 m | 35 de 38 | |
 | Paradas GTFS sin plataforma en OSM | 23, 37, 38 | |
 
 ## Hallazgos
@@ -17,7 +17,7 @@ Datos de OSM consultados con Overpass el 2026-10-15. Relaciones existentes: **L�
 2. **Paradas sin plataforma `highway=bus_stop`**:
    - GTFS 37 *Calle Juan de Juni 2 (instituto Sandoval y Rojas)*: no hay nada en OSM (el nodo más cercano está a 460 m).
    - GTFS 23 *Calle Sol de las Moreras 6* y GTFS 38 *Plaza Jardines de Don Diego*: solo existen como `public_transport=stop_position` ([11713637262](https://www.openstreetmap.org/node/11713637262) y [13684697688](https://www.openstreetmap.org/node/13684697688)), sin plataforma.
-3. **Paradas duplicadas en el GTFS**: los pares 1/44, 2/43, 3/42, 4/41, 5/40 y 6/39 están a 5–12 m entre sí y corresponden a un único nodo OSM cada uno. Son la misma parada física; el GTFS las separa según el recorrido (`Linea_2_2`, `Linea_2_4`). Conviene unificarlas en el GTFS.
+3. **Paradas duplicadas en el GTFS (resuelto)**: los pares 1/44, 2/43, 3/42, 4/41, 5/40 y 6/39 eran la misma parada física (5–12 m) y correspondían a un único nodo OSM cada uno. Se han fusionado en el GTFS (las paradas 39–44 ya no existen).
 4. **L1 y L2 en OSM, etiquetas**:
    - L2 tiene `ref=Linea 2` y `name=Linea 2` (L1 usa `ref=1`, `name=Línea 1`).
    - Ninguna de las dos tiene `operator`; el GTFS indica *UTE Clemente-Dávila*.
@@ -25,7 +25,7 @@ Datos de OSM consultados con Overpass el 2026-10-15. Relaciones existentes: **L�
 5. **Parada "stop" suelta**: ambas relaciones incluyen [11713637262](https://www.openstreetmap.org/node/11713637262) con rol `stop` (en el centro del recorrido) y el resto con `platform`. Mezcla de esquemas; sería mejor un `stop_position` por parada o ninguno.
 6. **Parada sin nombre en L2**: [13141501462](https://www.openstreetmap.org/node/13141501462) (`bus_stop` sin `name`), cerca de GTFS 30.
 7. **Nodos de plataforma en OSM sin parada GTFS** (<60 m): [6531568735](https://www.openstreetmap.org/node/6531568735), [6935115310](https://www.openstreetmap.org/node/6935115310) y [8576261858](https://www.openstreetmap.org/node/8576261858), sin nombre ni relación; probablemente de otras líneas interurbanas.
-8. **Paradas de L2 no incluidas en la relación** (según el GTFS pasan por ellas): GTFS 6/39 (*San Francisco 15*), 23 y 38.
+8. **Paradas de L2 no incluidas en la relación** (según el GTFS pasan por ellas): GTFS 6 (*San Francisco 15*), 23 y 38.
 9. **Nombres distintos**: OSM usa topónimos cortos ("Hospital", "Rotonda Fuentespina") y el GTFS la dirección o referencia. No los he cambiado en el fichero JOSM; elige cuál prefieres.
 10. **Horarios (`opening_hours`)**:
     - L1 en OSM: `Mo-Fr 09:00-21:00; Sa 11:00-20:30`. En el GTFS la última salida entre semana es a las 21:10 (`L1_LV_PLZ_2110`, trayecto corto) y en sábado a las 20:40.
@@ -71,12 +71,6 @@ Datos de OSM consultados con Overpass el 2026-10-15. Relaciones existentes: **L�
 | 34 | Sinovas | Sinovas | [6823857650](https://www.openstreetmap.org/node/6823857650) | 6 m |
 | 35 | Urbanización Costaján (rotonda H. Montehermoso) | Costaján | [11713756285](https://www.openstreetmap.org/node/11713756285) | 11 m |
 | 36 | Carretera de Burgos (Policía Nacional) | Policía Nacional | [11713756286](https://www.openstreetmap.org/node/11713756286) | 7 m |
-| 39 | Calle San Francisco 51 (colegio Vera Cruz) | San Francisco 15 | [11713759973](https://www.openstreetmap.org/node/11713759973) | 19 m |
-| 40 | Calle San Francisco 34 | San Francisco 41 | [11713759972](https://www.openstreetmap.org/node/11713759972) | 11 m |
-| 41 | Carretera Sinovas sin numero | Carretera Sinovas | [11713759971](https://www.openstreetmap.org/node/11713759971) | 9 m |
-| 42 | Parque María Pacheco | Calle María Pacheco | [11713759970](https://www.openstreetmap.org/node/11713759970) | 13 m |
-| 43 | Avenida El Ferial (esquina Calle Francisco Maldonado) (sentido contrario) | Avenida el Ferial | [11713759969](https://www.openstreetmap.org/node/11713759969) | 7 m |
-| 44 | Calle Santiago (frente Ambulatorio Norte) | Ambulatorio Norte | [11713637268](https://www.openstreetmap.org/node/11713637268) | 13 m |
 | 23 | Calle Sol de las Moreras 6 | (solo stop_position) | nuevo | 0 m |
 | 37 | Calle Juan de Juni 2 (instituto Sandoval y Rojas) | — | nuevo | — |
 | 38 | Plaza Jardines de Don Diego | (solo stop_position) | nuevo | 0 m |

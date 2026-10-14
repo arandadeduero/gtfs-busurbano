@@ -188,17 +188,16 @@ class TestStops(GtfsTestCase):
             self.assertTrue(BBOX[0] <= lat <= BBOX[1] and BBOX[2] <= lon <= BBOX[3], s["stop_id"])
 
     def test_no_duplicate_stop_locations(self):
-        # 4 y 41 están a 5 m (pendiente de unificar); se tolera sólo ese par.
+        # Dos paradas a menos de 6 m son la misma parada física.
         L = list(self.stops.values())
         close = []
         for i, a in enumerate(L):
             for b in L[i + 1:]:
                 d = haversine(float(a["stop_lat"]), float(a["stop_lon"]),
                               float(b["stop_lat"]), float(b["stop_lon"]))
-                if d < 6:
-                    close.append(tuple(sorted((a["stop_id"], b["stop_id"]), key=int)))
-        known = {("1", "44"), ("2", "43"), ("3", "42"), ("4", "41"), ("5", "40"), ("6", "39")}
-        self.assertEqual(sorted(set(close) - known), [])
+                if d < 15:
+                    close.append((a["stop_id"], b["stop_id"], round(d)))
+        self.assertEqual(close, [])
 
     def test_all_stops_used(self):
         used = {r["stop_id"] for r in self.stop_times}
