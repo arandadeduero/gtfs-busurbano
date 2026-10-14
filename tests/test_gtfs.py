@@ -506,7 +506,7 @@ class TestServiceReplacement(GtfsTestCase):
 
     def test_l2_no_duplicate_departures_any_weekday(self):
         d = datetime.date(2025, 12, 1)
-        while d <= datetime.date(2026, 12, 31):
+        while d <= datetime.date(2027, 12, 31):
             dep = self.departures(d.strftime("%Y%m%d"), "2")
             self.assertEqual(len(dep), len(set(dep)), f"{d} {dep}")
             d += datetime.timedelta(1)
@@ -520,6 +520,27 @@ class TestServiceReplacement(GtfsTestCase):
         dep = self.departures("20260715", "2")
         self.assertEqual(len(dep), 9)
         self.assertNotIn(("14:20", "AMB"), dep)
+
+    def test_l2_school_holidays_2027(self):
+        # Carnaval, Semana Santa, Navidad y verano: sólo viajes base (L-V_NoLectivo).
+        for date in ("20261228", "20270208", "20270322", "20270715"):
+            on = self.active(date)
+            self.assertIn("L-V_NoLectivo", on, date)
+            self.assertNotIn("L-V_Lectivo", on, date)
+            self.assertEqual(len(self.departures(date, "2")), 9, date)
+        # Día lectivo normal: variantes lectivas, sin viajes base duplicados.
+        on = self.active("20270510")
+        self.assertIn("L-V_Lectivo", on)
+        self.assertNotIn("L-V_NoLectivo", on)
+        self.assertEqual(len(self.departures("20270510", "2")), 9)
+
+    def test_no_service_on_2027_holidays(self):
+        for date in ("20270101", "20270106", "20270325", "20270326", "20270423",
+                     "20270816", "20270913", "20270914", "20271012", "20271101",
+                     "20271206", "20271208"):
+            self.assertEqual(self.departures(date, "1"), [], date)
+        for date in ("20270501", "20271225"):  # sábados festivos
+            self.assertEqual(self.departures(date, "1"), [], date)
 
 
 if __name__ == "__main__":
