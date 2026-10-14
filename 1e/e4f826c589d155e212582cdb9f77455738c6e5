@@ -1,0 +1,21 @@
+mapa.js
+  s_61e58bc6109fb9::t_3857348175d9c6 273-314,317-319,321,323-328,330-332,381
+mapa.css
+  s_61e58bc6109fb9::t_3857348175d9c6 67-72
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1ee4f826c589d155e212582cdb9f77455738c6e5",
+  "prompts": {},
+  "sessions": {
+    "s_61e58bc6109fb9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cda47068-19cc-4256-9c4d-dfd48dc17216",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Guillermo López Leal <guillermo.lopezleal@vonage.com>"
+    }
+  }
+}
