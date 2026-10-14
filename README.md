@@ -71,3 +71,13 @@ Consulta el archivo `LICENSE` para información sobre los términos de uso de es
 ---
 
 _Última actualización: Diciembre 2025_
+
+## Tests
+
+Tests de consistencia del feed (referencias, horarios, calendario, shapes y ubicación de paradas), solo con la librería estándar de Python:
+
+```sh
+python3 -m unittest discover -s tests -v
+```
+
+Se ejecutan en GitHub Actions (`tests.yml`) en cada push y pull request, junto con el validador oficial de MobilityData (`validate.yml`).
