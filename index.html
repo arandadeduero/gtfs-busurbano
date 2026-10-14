@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bus Urbano Aranda - Dataset GTFS</title>
+    <meta name="description" content="Datos abiertos GTFS del Bus Urbano de Aranda de Duero: descarga el feed, consulta el mapa, las paradas y los horarios." />
+    <meta name="theme-color" content="#0083c1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -182,6 +184,70 @@
         box-shadow: 0 4px 15px rgba(60, 180, 229, 0.4);
       }
 
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      .hero-actions .download-btn {
+        margin-top: 0;
+      }
+
+      .download-btn.secondary {
+        background: white;
+        color: #0083c1;
+        border: 2px solid #0083c1;
+        padding: calc(1rem - 2px) calc(2rem - 2px);
+      }
+
+      .stats {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 1.5rem;
+        padding-top: 1.2rem;
+        border-top: 1px solid #e3edf2;
+      }
+
+      .stats[hidden] {
+        display: none;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.8rem;
+        color: #0083c1;
+        line-height: 1.1;
+      }
+
+      .stat span {
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      a.line-chip {
+        display: inline-block;
+        color: white !important;
+        padding: 0.35rem 0.9rem;
+        border-radius: 20px;
+        margin: 0.25rem 0.25rem 0.25rem 0;
+        font-size: 0.95rem;
+      }
+
+      a.line-chip:hover {
+        text-decoration: none !important;
+        filter: brightness(1.1);
+      }
+
+      :focus-visible {
+        outline: 3px solid #f5a623;
+        outline-offset: 2px;
+      }
+
       .content {
         background: white;
         margin: 2rem auto;
@@ -310,23 +376,30 @@
 
     <div class="container">
       <div class="download-section">
-        <h2>📦 Descarga el Dataset GTFS</h2>
-        <p>Obtén la última versión del feed GTFS en formato ZIP</p>
-        <a href="https://github.com/arandadeduero/gtfs-busurbano/releases/latest" id="download-link" class="download-btn"
-          >⬇️ Descargar GTFS</a
-        >
+        <h2>Datos abiertos del Bus Urbano</h2>
+        <p>
+          Descarga el feed GTFS o consulta directamente las líneas, las paradas
+          y los horarios en el mapa
+        </p>
+        <div class="hero-actions">
+          <a
+            href="https://github.com/arandadeduero/gtfs-busurbano/releases/latest"
+            id="download-link"
+            class="download-btn"
+            >⬇️ Descargar GTFS</a
+          >
+          <a href="mapa.html" class="download-btn secondary"
+            >🗺️ Mapa y horarios</a
+          >
+        </div>
         <p id="latest-release" style="margin-top: 1rem">
           Cargando última versión...
         </p>
-      </div>
-
-      <div class="download-section">
-        <h2>🗺️ Mapa y horarios</h2>
-        <p>
-          Consulta en el mapa las líneas, las paradas, los próximos buses y los
-          horarios a partir de este mismo feed GTFS
-        </p>
-        <a href="mapa.html" class="download-btn">Abrir el mapa</a>
+        <div class="stats" id="stats" hidden>
+          <div class="stat"><strong id="stat-routes">–</strong><span>líneas</span></div>
+          <div class="stat"><strong id="stat-stops">–</strong><span>paradas</span></div>
+          <div class="stat"><strong id="stat-trips">–</strong><span>viajes</span></div>
+        </div>
       </div>
 
       <div class="content">
@@ -334,7 +407,7 @@
         <div class="info-grid">
           <div class="info-card">
             <strong>Operador:</strong>
-            Dávila Autocares
+            <span id="info-operator">UTE Clemente-Dávila</span>
           </div>
           <div class="info-card">
             <strong>Zona:</strong>
@@ -342,13 +415,15 @@
           </div>
           <div class="info-card">
             <strong>Web:</strong>
-            <a href="https://busurbanoaranda.com/" target="_blank"
+            <a href="https://busurbanoaranda.com/" target="_blank" rel="noopener"
               >busurbanoaranda.com</a
             >
           </div>
           <div class="info-card">
             <strong>Vigencia:</strong>
-            Del 1 de diciembre de 2025 al 31 de diciembre de 2026
+            <span id="info-validity"
+              >Del 1 de diciembre de 2025 al 31 de diciembre de 2028</span
+            >
           </div>
         </div>
 
@@ -418,14 +493,11 @@
         </ul>
 
         <h2>Líneas disponibles</h2>
-        <div>
-          <span class="badge">L1 - Aranda</span>
-          <span class="badge"
-            >L2 - Aranda - Polígono Industrial - Institutos</span
-          >
-          <span class="badge"
-            >L3 - Aranda - Sinovas - Urb. Costaján - Policía Nacional</span
-          >
+        <p>Pulsa una línea para verla en el mapa.</p>
+        <div id="lines">
+          <a class="line-chip" style="background: #f31212" href="mapa.html">L1 - Aranda (Circular)</a>
+          <a class="line-chip" style="background: #05a0c7" href="mapa.html">L2 - Aranda - Polígono Industrial - Institutos</a>
+          <a class="line-chip" style="background: #05c71c" href="mapa.html">L3 - Aranda - Sinovas - Urb. Costaján - Policía Nacional</a>
         </div>
 
         <h2>Uso</h2>
@@ -444,21 +516,29 @@
         <h2>Recursos adicionales</h2>
         <ul>
           <li>
-            <a href="https://gtfs.org/" target="_blank"
+            <a href="https://gtfs.org/" target="_blank" rel="noopener"
               >Especificación GTFS oficial</a
             >
           </li>
           <li>
             <a
               href="https://developers.google.com/transit/gtfs/reference"
-              target="_blank"
+              target="_blank" rel="noopener"
               >GTFS Reference</a
             >
           </li>
           <li>
-            <a href="https://gtfs-validator.mobilitydata.org/" target="_blank"
+            <a href="https://gtfs-validator.mobilitydata.org/" target="_blank" rel="noopener"
               >Validador GTFS</a
             >
+          </li>
+          <li>
+            <a
+              href="https://github.com/arandadeduero/gtfs-busurbano/tree/main/osm"
+              target="_blank" rel="noopener"
+              >Comparación con OpenStreetMap</a
+            >
+            (paradas y líneas, con fichero para JOSM)
           </li>
         </ul>
       </div>
@@ -466,22 +546,22 @@
 
     <footer>
       <div class="container">
-        <a href="https://www.arandadeduero.es" target="_blank">
+        <a href="https://www.arandadeduero.es" target="_blank" rel="noopener">
           <img
             src="images/escudo.jpg"
             alt="Escudo Aranda de Duero"
             class="footer-logo"
           />
         </a>
-        <p>Actualizado automáticamente en cada release</p>
+        <p>Actualizado automáticamente en cada release · Licencia AGPL-3.0 · Mapa © colaboradores de OpenStreetMap</p>
         <p style="margin-top: 0.5rem">
-          <a href="https://www.arandadeduero.es" target="_blank"
+          <a href="https://www.arandadeduero.es" target="_blank" rel="noopener"
             >www.arandadeduero.es</a
           >
           |
           <a
             href="https://github.com/arandadeduero/gtfs-busurbano"
-            target="_blank"
+            target="_blank" rel="noopener"
             >Ver en GitHub</a
           >
         </p>
@@ -528,8 +608,46 @@
         }
       }
 
+      // Datos del propio feed: estadísticas, operador, vigencia y líneas
+      async function loadFeed() {
+        const rows = async (n) => {
+          const r = await fetch(n);
+          if (!r.ok) throw new Error(n);
+          const [head, ...body] = (await r.text()).trim().split(/\r?\n/);
+          const cols = head.split(",");
+          return body.map((l) => Object.fromEntries(l.split(",").map((v, i) => [cols[i], v])));
+        };
+        try {
+          const [routes, stops, trips, agency, info] = await Promise.all(
+            ["routes", "stops", "trips", "agency", "feed_info"].map((n) => rows(n + ".txt"))
+          );
+          document.getElementById("stat-routes").textContent = routes.length;
+          document.getElementById("stat-stops").textContent = stops.length;
+          document.getElementById("stat-trips").textContent = trips.length;
+          document.getElementById("stats").hidden = false;
+          if (agency[0]) document.getElementById("info-operator").textContent = agency[0].agency_name;
+          const fmt = (d) => new Date(d.slice(0, 4) + "-" + d.slice(4, 6) + "-" + d.slice(6) + "T12:00:00")
+            .toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
+          if (info[0]) document.getElementById("info-validity").textContent =
+            `Del ${fmt(info[0].feed_start_date)} al ${fmt(info[0].feed_end_date)}`;
+          const box = document.getElementById("lines");
+          box.textContent = "";
+          routes.forEach((r) => {
+            const a = document.createElement("a");
+            a.className = "line-chip";
+            a.href = "mapa.html";
+            a.style.background = "#" + r.route_color;
+            a.textContent = `${r.route_short_name} - ${r.route_long_name}`;
+            box.appendChild(a);
+          });
+        } catch (e) {
+          console.error("No se pudo leer el feed:", e);
+        }
+      }
+
       // Load latest release on page load
       fetchLatestRelease();
+      loadFeed();
     </script>
   </body>
 </html>

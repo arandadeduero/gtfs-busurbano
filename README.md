@@ -4,10 +4,10 @@ Este repositorio contiene los datos del sistema de transporte público del Bus U
 
 ## Sobre el servicio
 
-- **Operador**: Dávila Autocares
+- **Operador**: UTE Clemente-Dávila
 - **Zona**: Aranda de Duero
 - **Web**: [busurbanoaranda.com](https://busurbanoaranda.com/)
-- **Vigencia del feed**: Del 1 de diciembre de 2025 al 31 de diciembre de 2026
+- **Vigencia del feed**: Del 1 de diciembre de 2025 al 31 de diciembre de 2028
 
 ## ¿Qué es GTFS?
 
