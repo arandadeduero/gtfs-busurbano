@@ -1,0 +1,25 @@
+tests/test_gtfs.py
+  s_61e58bc6109fb9::t_69b97d6c7c9722 453-477,479,481,483-485
+shapes.txt
+  s_61e58bc6109fb9::t_69b97d6c7c9722 97-193,432-610,849-1088,1285-1482,1645-1929
+trips.txt
+  s_61e58bc6109fb9::t_69b97d6c7c9722 16-29,40-48,54-55,62-64
+.gitignore
+  s_61e58bc6109fb9::t_b451057798b658 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "09ff56bbe65d236a19cf57794c27e0aaf358acea",
+  "prompts": {},
+  "sessions": {
+    "s_61e58bc6109fb9": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "cda47068-19cc-4256-9c4d-dfd48dc17216",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Guillermo López Leal <guillermo.lopezleal@vonage.com>"
+    }
+  }
+}
