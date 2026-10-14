@@ -61,3 +61,6 @@ h4.pattern { font-size: .95rem; margin: .8rem 0 .4rem; color: #0083c1; }
   #panel { width: 100%; max-width: none; height: 48vh; border-right: 0; border-top: 1px solid #d5e3ea; }
   #map { height: 52vh; flex: none; }
 }
+.arrow { background: none; border: 0; }
+.arrow svg { display: block; filter: drop-shadow(0 0 1px rgba(0,0,0,.5)); }
+#map.no-arrows .arrow { display: none; }

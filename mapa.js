@@ -136,6 +136,7 @@
           color, weight: i === 0 ? 5 : 4, opacity: i === 0 ? 0.85 : 0.6, dashArray: i === 0 ? null : "6 6",
         }).bindTooltip(`${D.routes[rid].route_short_name} · ${id}`, { sticky: true }).addTo(g);
       });
+      addArrows(g, [...ids].filter((id) => !id.endsWith("_PLZ")).sort(), color);
       lineLayers[rid] = g.addTo(map);
     });
     stopLayer = L.layerGroup().addTo(map);
@@ -149,6 +150,32 @@
     });
     const all = Object.values(D.shapes).flat().map((p) => [p.lat, p.lon]);
     map.fitBounds(L.latLngBounds(all).pad(0.05));
+  }
+
+  // Flechas de sentido de la marcha cada ~400 m a lo largo de la traza.
+  const ARROW_STEP = 400, ARROW_MIN_GAP = 60;
+  function bearingDeg(a, b) {
+    const p = L.CRS.EPSG3857.project(L.latLng(a)), q = L.CRS.EPSG3857.project(L.latLng(b));
+    return (Math.atan2(q.x - p.x, q.y - p.y) * 180) / Math.PI;
+  }
+  function addArrows(group, shapeIds, color) {
+    const placed = []; // evita flechas duplicadas donde las variantes comparten trazado
+    shapeIds.forEach((id) => {
+      const pts = D.shapes[id], total = pts[pts.length - 1].dist;
+      for (let d = ARROW_STEP / 2; d < total - 50; d += ARROW_STEP) {
+        const pos = pointAt(id, d);
+        if (placed.some((q) => Math.abs(q[0] - pos[0]) * 111000 < ARROW_MIN_GAP &&
+            Math.abs(q[1] - pos[1]) * 83000 < ARROW_MIN_GAP)) continue;
+        placed.push(pos);
+        const angle = bearingDeg(pointAt(id, Math.max(0, d - 20)), pointAt(id, Math.min(total, d + 20)));
+        L.marker(pos, {
+          interactive: false, keyboard: false,
+          icon: L.divIcon({ className: "arrow", iconSize: [18, 18], iconAnchor: [9, 9],
+            html: `<svg viewBox="0 0 20 20" width="18" height="18" style="transform:rotate(${angle.toFixed(0)}deg)">` +
+              `<path d="M10 1.5 L17 17.5 L10 13.5 L3 17.5 Z" fill="${color}" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>` }),
+        }).addTo(group);
+      }
+    });
   }
 
   function departuresAt(stopId, dateISO, fromSec) {
@@ -216,6 +243,7 @@
     }).join("");
     el.innerHTML = `
       <div class="row"><label class="small"><input type="checkbox" id="chk-buses" checked /> Mostrar buses (posición estimada según horario, sólo hoy)</label></div>
+      <div class="row"><label class="small"><input type="checkbox" id="chk-arrows" checked /> Mostrar flechas de sentido</label></div>
       <div class="row"><label class="small">Fecha <input type="date" id="date" value="${state.date}" /></label>
         <button id="today" style="font:inherit;padding:.35rem .6rem">Hoy</button></div>
       <p class="muted" id="svc-info"></p>
@@ -226,6 +254,7 @@
     el.querySelectorAll("input[data-line]").forEach((c) => c.addEventListener("change", () => {
       c.checked ? lineLayers[c.dataset.line].addTo(map) : map.removeLayer(lineLayers[c.dataset.line]);
     }));
+    $("chk-arrows").addEventListener("change", (e) => $("map").classList.toggle("no-arrows", !e.target.checked));
     $("chk-buses").addEventListener("change", (e) => { state.showBuses = e.target.checked; updateBuses(); });
     $("date").addEventListener("change", (e) => { if (e.target.value) setDate(e.target.value); });
     $("today").addEventListener("click", () => setDate(madridNow().date));
