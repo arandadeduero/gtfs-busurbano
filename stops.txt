@@ -22,11 +22,11 @@ stop_id,stop_name,stop_lat,stop_lon,location_type,wheelchair_boarding
 21,Calle Burgo de Osma (Agencia Tributaria),41.66883308152978,-3.689686372167756,0,1
 22,Calle Postas (Cine),41.66983335551532,-3.688081869606492,0,1
 23,Calle Sol de las Moreras 6,41.6698580815285,-3.684576895421401,0,1
-24,Calle Pedro Sanz (Parque La Huerta),41.669075080086884,-3.6803699561185965,0,1
+24,Calle Sol de las Moreras (Parque La Huerta),41.669075080086884,-3.6803699561185965,0,1
 25,Avenida Burgos 1 (iglesia Santa Catalina),41.670301585219136,-3.6788469512485165,0,1
 26,Calle Montelatorre (instituto FP Santa Catalina),41.670911029722475,-3.677056335290189,0,1
-27,Calle Santiago (Calle Marqués de Ahumada),41.672572032108604,-3.67829759837457,0,1
-28,Avenida Luis Mateos (frente Gasolinera),41.66457980284062,-3.703430811601578,0,1
+27,Calle Carrequemada (Madres Bernardas),41.672572032108604,-3.67829759837457,0,1
+28,Avenida Luis Mateos (Parque de Bomberos),41.66457980284062,-3.703430811601578,0,1
 29,Avenida Luis Mateos (frente Michelin),41.664897342302055,-3.706474537531193,0,1
 30,Avenida Luis Mateos (rotonda),41.66535111962884,-3.712250139382917,0,1
 31,Avenida Luis Mateos (Michelin),41.664697063375655,-3.7061184902349,0,1
