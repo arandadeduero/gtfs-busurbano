@@ -408,6 +408,19 @@ class TestStopTimes(GtfsTestCase):
             for tid, d in items:
                 self.assertLess(abs(d - med), 180, f"{tid} dura {d}s, mediana {med}s")
 
+    def test_l1_trips_from_ambulatorio_end_at_ambulatorio(self):
+        # La L1 es circular: los viajes que salen de Ambulatorio Norte (y los de cierre) acaban allí.
+        for t in self.trips:
+            if t["route_id"] == "1" and ("_AMB_" in t["trip_id"] or t["shape_id"] == "Linea_1_2"):
+                rows = self.times_by_trip[t["trip_id"]]
+                self.assertEqual(rows[-1]["stop_id"], "1", t["trip_id"])
+
+    def test_l1_trips_from_plaza_end_at_plaza(self):
+        for t in self.trips:
+            if t["route_id"] == "1" and "_PLZ_" in t["trip_id"] and t["shape_id"] != "Linea_1_2":
+                rows = self.times_by_trip[t["trip_id"]]
+                self.assertEqual(rows[-1]["stop_id"], "12", t["trip_id"])
+
 
 class TestShapes(GtfsTestCase):
     def test_sequences_contiguous_increasing(self):
