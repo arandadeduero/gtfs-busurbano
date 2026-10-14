@@ -81,3 +81,7 @@ python3 -m unittest discover -s tests -v
 ```
 
 Se ejecutan en GitHub Actions (`tests.yml`) en cada push y pull request, junto con el validador oficial de MobilityData (`validate.yml`).
+
+## Mapa y horarios
+
+`mapa.html` es un visor (Leaflet + OpenStreetMap) que lee los `.txt` de este mismo repositorio: líneas, paradas con próximas salidas, tablas de horarios por fecha y posición estimada de los buses según el horario. Se publica con GitHub Pages junto a `index.html`.

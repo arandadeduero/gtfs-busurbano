@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mapa - Bus Urbano Aranda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="mapa.css" />
+  </head>
+  <body>
+    <header class="top">
+      <h1>🚌 Bus Urbano Aranda · Mapa y horarios</h1>
+      <a href="index.html">← Dataset GTFS</a>
+    </header>
+    <main>
+      <aside id="panel">
+        <nav class="tabs">
+          <button data-tab="lineas" class="active">Líneas</button>
+          <button data-tab="paradas">Paradas</button>
+          <button data-tab="horarios">Horarios</button>
+        </nav>
+        <p id="status">Cargando datos…</p>
+        <section id="tab-lineas" class="tab active"></section>
+        <section id="tab-paradas" class="tab"></section>
+        <section id="tab-horarios" class="tab"></section>
+      </aside>
+      <div id="map"></div>
+    </main>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="mapa.js"></script>
+  </body>
+</html>
