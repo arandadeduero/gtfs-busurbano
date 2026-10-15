@@ -8,6 +8,12 @@ indica un destino en Aranda de Duero y obtiene qué línea de bus coger, desde q
 dónde bajarse y cuándo sale el próximo. Complementa a `/mapa`, que es un visor de
 líneas, paradas y horarios.
 
+## Identidad
+- Logo nuevo del Ayuntamiento de Aranda de Duero (`images/ayuntamiento.png`, 640×208,
+  procedente de `firmas-correo/images/colores/`) en la cabecera, sobre una pastilla
+  blanca porque no existe variante en blanco; `alt` y altura ~34 px, enlazado a la
+  web del Ayuntamiento. Se añade a la lista de assets cacheados por el Service Worker.
+
 ## Alcance
 - Dentro: búsqueda de destino con Nominatim (OSM), origen por geolocalización o toque
   en el mapa, viajes **directos** (sin transbordos), próximas salidas, tramos a pie,
