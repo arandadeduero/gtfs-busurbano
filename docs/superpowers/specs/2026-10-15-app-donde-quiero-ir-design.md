@@ -78,7 +78,14 @@ GitHub Pages sólo da `Cache-Control: max-age=600`, así que se controla desde l
 4. **Resultados**: tarjeta por opción con insignia de línea, "X min a pie → parada A →
    bus → parada B → Y min a pie", próximas 3 salidas y hora de llegada. Al elegirla se
    dibujan en el mapa los tramos a pie y el segmento de la línea.
-5. **Casos límite**: sin línea directa → mostrar paradas cercanas e indicar que haría
+5. **Ver en Google Maps**: enlace visible bajo el destino, siempre que haya origen y
+   destino, a
+   `https://www.google.com/maps/dir/?api=1&origin=<lat>,<lon>&destination=<lat>,<lon>&travelmode=transit`.
+   Siempre `travelmode=transit` (transporte público). En Android, al ser un enlace
+   universal de Google Maps, abre la app si está instalada y si no la web. Se abre con
+   `target="_blank" rel="noopener"`. La construcción de la URL es una función pura de
+   `core.js` con prueba en Node (coordenadas con 5 decimales, `travelmode` fijo).
+6. **Casos límite**: sin línea directa → mostrar paradas cercanas e indicar que haría
    falta transbordo; sin más servicio hoy → primeras salidas de mañana; sin permiso de
    ubicación → origen manual.
 
