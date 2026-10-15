@@ -24,12 +24,38 @@ líneas, paradas y horarios.
 ## Arquitectura
 Ficheros nuevos:
 - `app/index.html`, `app/app.css`, `app/app.js` (UI y mapa).
+- `app/sw.js`: Service Worker con la estrategia de caché (ver «Caché y versionado»).
 - `app/core.js`: funciones puras (parseo CSV, servicios activos, distancia, emparejado
   de paradas, próximas salidas). Se carga en el navegador y es `require`-able desde Node.
 - `tests/test_app_core.js`: pruebas con Node (`node --test`).
 - Enlaces desde `index.html` y `mapa.html`; mención en `README.md`.
 
 `mapa.js` no se modifica.
+
+## Caché y versionado
+Objetivo: los ficheros se descargan una sola vez y no se vuelven a pedir salvo que cambien.
+GitHub Pages sólo da `Cache-Control: max-age=600`, así que se controla desde la app:
+
+- **Service Worker** (`app/sw.js`, registrado con rutas relativas para funcionar bajo
+  `/<repo>/app/`). Intercepta todas las peticiones de la página, incluidas las de
+  `../*.txt`, `app/*`, la fuente Outfit y Leaflet.
+- **Versión de la app**: constante `APP_VERSION` en `sw.js` (p. ej. `2026.10.15-1`).
+  El caché se llama `aranda-app-<APP_VERSION>`; al activarse una versión nueva se borran
+  los cachés antiguos. Se incrementa al cambiar `app/*`.
+- **Versión de los datos**: se usa `feed_version` de `feed_info.txt` (fichero pequeño).
+  En cada arranque se pide `feed_info.txt` con `cache: "no-store"`; si la versión
+  coincide con la guardada se sirven los `.txt` desde caché (cero descargas); si difiere
+  (o no hay red, entonces se usa lo cacheado) se recargan los `.txt` con
+  `cache: "reload"` y se guarda la nueva versión. Al publicar datos nuevos hay que
+  subir `feed_version` (y se añade una prueba en `tests/test_gtfs.py` que lo recuerde
+  si cambian los `.txt` sin cambiar la versión, si es viable).
+- **Estrategia**: cache-first para assets y datos versionados; Leaflet vendorizado o
+  fijado por versión (`unpkg.com/leaflet@1.9.4`) y cacheado igual. Teselas OSM: sólo
+  caché HTTP del navegador (no se precachean, por la política de uso de OSM).
+- **Offline**: tras la primera visita la app arranca sin red (salvo teselas y búsqueda
+  Nominatim, que muestran un aviso).
+- **Pruebas**: `core.js` expone `needsDataRefresh(storedVersion, remoteVersion)` (pura,
+  probada en Node); el resto se verifica a mano en DevTools (Application → Cache).
 
 ## Flujo
 1. **Destino**: campo de búsqueda → Nominatim → lista de hasta 5 resultados; también
@@ -55,4 +81,6 @@ Ficheros nuevos:
 ## Criterios de éxito
 - Dado un destino en Aranda, se muestra en < 2 s (tras cargar datos) la mejor línea
   directa con la próxima salida correcta respecto al calendario real.
+- En la segunda visita no hay descargas de datos ni assets (sólo la comprobación de
+  `feed_info.txt`); un cambio de `APP_VERSION` o `feed_version` los renueva.
 - Funciona en móvil y se despliega con el workflow de Pages existente sin cambios.
