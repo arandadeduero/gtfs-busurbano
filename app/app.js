@@ -98,7 +98,7 @@
     }
     if (S.dest) {
       h += `<div class="dest"><b>${esc(S.destLabel)}</b>${S.destSub ? `<small>${esc(S.destSub)}</small>` : ""}</div>`;
-      if (S.origin) h += `<a class="gmaps" target="_blank" rel="noopener" href="${esc(C.gmapsUrl(S.origin, S.dest))}">🗺️ Ver en Google Maps (transporte público)</a>`;
+      if (S.origin) h += `<a class="gmaps" target="_blank" rel="noopener" href="${esc(C.gmapsUrl(S.origin, S.dest))}"><img src="../images/google-maps.svg" alt="" width="18" height="26" />Ver en Google Maps</a>`;
     }
     if (S.dest && !S.origin) h += `<p class="note">Falta el origen: pulsa 📍 para usar tu ubicación o 🗺️ y toca el mapa.</p>`;
     if (S.dest && S.origin) {
@@ -200,6 +200,9 @@
   }
 
   function wire() {
+    const burger = $("burger"), menu = $("menu");
+    burger.addEventListener("click", () => { const o = menu.classList.toggle("open"); burger.setAttribute("aria-expanded", o); });
+    document.addEventListener("click", (e) => { if (!e.target.closest("#menu, #burger")) { menu.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); } });
     $("form").addEventListener("submit", (e) => { e.preventDefault(); search($("q").value); });
     $("btn-geo").addEventListener("click", useGeolocation);
     $("btn-pick-origin").addEventListener("click", () => { S.pick = "origin"; $("hint").textContent = "Toca el mapa para elegir el origen."; });

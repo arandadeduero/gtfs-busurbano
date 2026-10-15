@@ -1,11 +1,11 @@
 // Caché de /app/: assets versionados + datos GTFS versionados por feed_version.
 // Sube APP_VERSION al cambiar cualquier fichero de app/.
-const APP_VERSION = "2026.10.15-3";
+const APP_VERSION = "2026.10.15-4";
 const STATIC = "aranda-app-static-" + APP_VERSION;
 const DATA = "aranda-app-data";
 importScripts("core.js");
 
-const ASSETS = ["./", "index.html", "app.css", "app.js", "core.js", "../images/ayuntamiento.png",
+const ASSETS = ["./", "index.html", "app.css", "app.js", "core.js", "../images/ayuntamiento.png", "../images/google-maps.svg",
   "../fonts/outfit.css", "../fonts/outfit-latin.woff2",
   "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css", "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"];
 const DATA_FILES = /\/(agency|routes|stops|trips|stop_times|shapes|calendar|calendar_dates|feed_info)\.txt$/;
