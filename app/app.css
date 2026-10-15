@@ -73,3 +73,11 @@ main { flex: 1; display: flex; min-height: 0; }
   #panel { width: 100%; max-height: 58%; border-right: 0; border-top: 1px solid #d5e3ea; }
   #map { min-height: 40%; }
 }
+.dest-field { position: relative; }
+.suggest { position: absolute; left: 0; right: 0; top: calc(100% + 4px); z-index: 1100; list-style: none; background: #fff;
+  border: 1px solid #b9cbd4; border-radius: 8px; box-shadow: 0 6px 20px rgba(0,0,0,.2); overflow: hidden; }
+.suggest li { padding: .55rem .8rem; font-size: .92rem; cursor: pointer; border-bottom: 1px solid #eef3f6; display: flex; gap: .5rem; }
+.suggest li:last-child { border-bottom: 0; }
+.suggest li:hover, .suggest li.act { background: #eef7fb; }
+.suggest li .k { flex: none; }
+.suggest li.osm { color: #0083c1; font-weight: 600; }

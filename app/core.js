@@ -164,10 +164,26 @@
     return r ? r.feed_version : "";
   }
 
+  const normalize = (s) => String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+
+  // Sugerencias locales: items [{name, tags?}]; todos los términos deben aparecer; primero los que empiezan por la consulta.
+  function suggest(items, query, max = 6) {
+    const terms = normalize(query).split(/\s+/).filter(Boolean);
+    if (!terms.length || normalize(query).length < 2) return [];
+    const scored = [];
+    items.forEach((it) => {
+      const name = normalize(it.name), hay = name + " " + normalize(it.tags || "");
+      if (!terms.every((t) => hay.includes(t))) return;
+      const starts = name.startsWith(terms[0]) ? 0 : name.split(/\s+/).some((w) => w.startsWith(terms[0])) ? 1 : 2;
+      scored.push({ it, starts, len: name.length });
+    });
+    return scored.sort((a, b) => a.starts - b.starts || a.len - b.len).slice(0, max).map((x) => x.it);
+  }
+
   function gmapsUrl(origin, dest) {
     const f = (p) => p.lat.toFixed(5) + "," + p.lon.toFixed(5);
     return "https://www.google.com/maps/dir/?api=1&origin=" + f(origin) + "&destination=" + f(dest) + "&travelmode=transit";
   }
 
-  return { parseCSV, toSec, hhmm, activeServices, addDays, distanceM, walkMin, walkSec, nearbyStops, nearestStops, findOptions, sliceShape, needsDataRefresh, feedVersion, gmapsUrl };
+  return { parseCSV, toSec, hhmm, activeServices, addDays, distanceM, walkMin, walkSec, nearbyStops, nearestStops, findOptions, sliceShape, needsDataRefresh, feedVersion, gmapsUrl, normalize, suggest };
 });

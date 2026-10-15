@@ -27,6 +27,10 @@
   // ---------- Datos ----------
   const load = (name) => fetch("../" + name + ".txt").then((r) => { if (!r.ok) throw new Error(name + ": " + r.status); return r.text(); });
 
+  async function loadPlaces() {
+    try { D.places = await (await fetch("places.json")).json(); } catch (_) { D.places = []; }
+  }
+
   async function loadData() {
     const info = await load("feed_info"); // primero: el SW decide aquí si hay que renovar los datos
     S.feedVersion = C.feedVersion(info);
@@ -187,6 +191,32 @@
     setDest(+x.lat, +x.lon, name, x.display_name);
   }
 
+  // ---------- Sugerencias locales (sin red) ----------
+  let sugg = [], act = -1;
+  function suggestions(q) {
+    const items = (D.places || []).map((p) => ({ ...p, kind: "lugar" }))
+      .concat(Object.values(D.stops || {}).map((s) => ({ name: s.stop_name, lat: s.lat, lon: s.lon, kind: "parada" })));
+    return C.suggest(items, q, 6);
+  }
+  function showSuggest() {
+    const q = $("q").value;
+    sugg = suggestions(q); act = -1;
+    const ul = $("suggest");
+    if (!q.trim() || q.trim().length < 2) { ul.hidden = true; $("q").setAttribute("aria-expanded", "false"); return; }
+    ul.innerHTML = sugg.map((x, i) => `<li role="option" data-i="${i}"><span class="k">${x.kind === "parada" ? "🚏" : "📍"}</span><span>${esc(x.name)}</span></li>`).join("")
+      + `<li role="option" class="osm" data-osm="1"><span class="k">🔎</span><span>Buscar «${esc(q.trim())}» en OpenStreetMap</span></li>`;
+    ul.hidden = false; $("q").setAttribute("aria-expanded", "true");
+  }
+  function hideSuggest() { $("suggest").hidden = true; $("q").setAttribute("aria-expanded", "false"); act = -1; }
+  function chooseSuggestion(i) {
+    const x = sugg[i]; if (!x) return;
+    hideSuggest(); S.picks = []; setStatus("");
+    setDest(x.lat, x.lon, x.name, x.kind === "parada" ? "Parada de autobús" : "Aranda de Duero");
+  }
+  function highlight() {
+    [...$("suggest").children].forEach((li, k) => li.classList.toggle("act", k === act));
+  }
+
   // ---------- Init ----------
   function initMap() {
     map = L.map("map").setView(CENTER, 14);
@@ -203,11 +233,34 @@
     const burger = $("burger"), menu = $("menu");
     burger.addEventListener("click", () => { const o = menu.classList.toggle("open"); burger.setAttribute("aria-expanded", o); });
     document.addEventListener("click", (e) => { if (!e.target.closest("#menu, #burger")) { menu.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); } });
-    $("form").addEventListener("submit", (e) => { e.preventDefault(); search($("q").value); });
+    $("form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (act >= 0 && act < sugg.length) return chooseSuggestion(act);
+      hideSuggest(); search($("q").value);
+    });
+    $("q").addEventListener("input", showSuggest);
+    $("q").addEventListener("focus", showSuggest);
+    $("q").addEventListener("keydown", (e) => {
+      const n = $("suggest").children.length;
+      if (e.key === "ArrowDown" && n) { e.preventDefault(); act = (act + 1) % n; highlight(); }
+      else if (e.key === "ArrowUp" && n) { e.preventDefault(); act = (act - 1 + n) % n; highlight(); }
+      else if (e.key === "Escape") hideSuggest();
+    });
+    $("suggest").addEventListener("mousedown", (e) => e.preventDefault()); // no perder el foco antes del click
+    $("suggest").addEventListener("click", (e) => {
+      const li = e.target.closest("li"); if (!li) return;
+      if (li.dataset.osm) { hideSuggest(); search($("q").value); } else chooseSuggestion(+li.dataset.i);
+    });
+    document.addEventListener("click", (e) => { if (!e.target.closest(".dest-field")) hideSuggest(); });
     $("btn-geo").addEventListener("click", useGeolocation);
     $("btn-pick-origin").addEventListener("click", () => { S.pick = "origin"; $("hint").textContent = "Toca el mapa para elegir el origen."; });
     $("chips").innerHTML = PLACES.map((p, i) => `<button type="button" class="chip" data-i="${i}">${esc(p.label)}</button>`).join("");
-    $("chips").addEventListener("click", (e) => { const b = e.target.closest(".chip"); if (b) { $("q").value = PLACES[+b.dataset.i].q; search($("q").value); } });
+    $("chips").addEventListener("click", (e) => {
+      const b = e.target.closest(".chip"); if (!b) return;
+      $("q").value = PLACES[+b.dataset.i].q;
+      sugg = suggestions($("q").value);
+      if (sugg.length === 1) chooseSuggestion(0); else { $("q").focus(); showSuggest(); }
+    });
     $("results").addEventListener("click", (e) => {
       const li = e.target.closest(".picks li");
       if (li) return pickResult({ ...S.picks[+li.dataset.i], display_name: S.picks[+li.dataset.i].display, name: S.picks[+li.dataset.i].name });
@@ -230,7 +283,7 @@
     initMap(); wire();
     registerSW();
     try {
-      await loadData();
+      await Promise.all([loadData(), loadPlaces()]);
       $("legend").textContent = `Datos GTFS v${S.feedVersion} · guardados en este dispositivo · Mapa © OpenStreetMap · Búsqueda Nominatim`;
       setStatus("");
       useGeolocation();

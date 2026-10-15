@@ -112,3 +112,19 @@ test("gmapsUrl: siempre transporte público", () => {
   const u = C.gmapsUrl({ lat: 41.675138, lon: -3.685868 }, { lat: 41.669202, lon: -3.691206 });
   assert.strictEqual(u, "https://www.google.com/maps/dir/?api=1&origin=41.67514,-3.68587&destination=41.66920,-3.69121&travelmode=transit");
 });
+
+test("suggest: sin acentos, por palabras y priorizando el comienzo", () => {
+  const items = [{ name: "Estación de autobuses", tags: "bus" }, { name: "Hospital Santos Reyes" }, { name: "Instituto Vela Zanetti", tags: "ies" }, { name: "Plaza Mayor" }];
+  assert.deepStrictEqual(C.suggest(items, "estacion").map((x) => x.name), ["Estación de autobuses"]);
+  assert.deepStrictEqual(C.suggest(items, "santos rey").map((x) => x.name), ["Hospital Santos Reyes"]);
+  assert.deepStrictEqual(C.suggest(items, "ies").map((x) => x.name), ["Instituto Vela Zanetti"]);
+  assert.deepStrictEqual(C.suggest(items, "p").map((x) => x.name), []); // mínimo 2 letras
+  assert.deepStrictEqual(C.suggest(items, "zzz"), []);
+  assert.strictEqual(C.suggest(items, "pl")[0].name, "Plaza Mayor");
+});
+
+test("places.json: coordenadas dentro de Aranda de Duero", () => {
+  const places = JSON.parse(fs.readFileSync(path.join(ROOT, "app", "places.json"), "utf8"));
+  assert.ok(places.length > 5);
+  places.forEach((p) => assert.ok(p.lat > 41.62 && p.lat < 41.72 && p.lon > -3.76 && p.lon < -3.62, p.name));
+});

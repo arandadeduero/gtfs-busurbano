@@ -1,0 +1,104 @@
+[
+ {
+  "name": "Ayuntamiento de Aranda de Duero",
+  "lat": 41.67019,
+  "lon": -3.689687,
+  "tags": "ayuntamiento plaza"
+ },
+ {
+  "name": "Plaza Mayor",
+  "lat": 41.670464,
+  "lon": -3.688888,
+  "tags": "centro"
+ },
+ {
+  "name": "Estación de autobuses",
+  "lat": 41.670221,
+  "lon": -3.694904,
+  "tags": "estacion bus autobuses"
+ },
+ {
+  "name": "Hospital Santos Reyes",
+  "lat": 41.669653,
+  "lon": -3.691585,
+  "tags": "hospital urgencias sanidad"
+ },
+ {
+  "name": "Centro de Salud Aranda Sur",
+  "lat": 41.666557,
+  "lon": -3.687706,
+  "tags": "centro de salud ambulatorio medico"
+ },
+ {
+  "name": "Centro de Salud Aranda Norte",
+  "lat": 41.672707,
+  "lon": -3.679998,
+  "tags": "centro de salud ambulatorio medico"
+ },
+ {
+  "name": "Polideportivo Príncipe de Asturias",
+  "lat": 41.67075,
+  "lon": -3.675019,
+  "tags": "deportes polideportivo"
+ },
+ {
+  "name": "Instituto Sandoval y Rojas",
+  "lat": 41.67298,
+  "lon": -3.672908,
+  "tags": "instituto ies colegio educacion"
+ },
+ {
+  "name": "Instituto Vela Zanetti",
+  "lat": 41.659948,
+  "lon": -3.68401,
+  "tags": "instituto ies colegio educacion"
+ },
+ {
+  "name": "Biblioteca Municipal",
+  "lat": 41.671334,
+  "lon": -3.687747,
+  "tags": "biblioteca libros plaza del trigo"
+ },
+ {
+  "name": "Piscinas cubiertas",
+  "lat": 41.663993,
+  "lon": -3.689267,
+  "tags": "piscina deportes"
+ },
+ {
+  "name": "Museo del Tren",
+  "lat": 41.655016,
+  "lon": -3.687534,
+  "tags": "museo tren"
+ },
+ {
+  "name": "Museo Casa de las Bolas",
+  "lat": 41.67184,
+  "lon": -3.690691,
+  "tags": "museo"
+ },
+ {
+  "name": "Centro Cultural Caja de Burgos",
+  "lat": 41.670885,
+  "lon": -3.687333,
+  "tags": "teatro cultura cine"
+ },
+ {
+  "name": "Casa de la Cultura (auditorio)",
+  "lat": 41.671504,
+  "lon": -3.687777,
+  "tags": "teatro cultura auditorio"
+ },
+ {
+  "name": "Juzgado",
+  "lat": 41.672671,
+  "lon": -3.678688,
+  "tags": "juzgados justicia"
+ },
+ {
+  "name": "Michelin",
+  "lat": 41.657366,
+  "lon": -3.68275,
+  "tags": "fabrica trabajo poligono"
+ }
+]
