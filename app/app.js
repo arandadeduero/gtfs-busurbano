@@ -119,8 +119,8 @@
         });
       } else {
         const near = C.nearestStops(D.stops, S.dest.lat, S.dest.lon, 3);
-        h += `<p class="note">ℹ️ <b>No hay línea directa</b> entre esos dos puntos. Habría que hacer transbordo (de momento la app solo calcula viajes directos).</p>
-          <div class="sec">Paradas más cercanas a tu destino</div>
+        h += `<p class="note">ℹ️ <b>Ninguna línea conecta esos dos puntos.</b> Estas son las paradas más cercanas a tu destino.</p>
+          <div class="sec">Paradas cercanas al destino</div>
           ${near.map((n) => `<div class="dest"><b>${esc(n.stop.stop_name)}</b><small>${fmtDist(n.dist)} · ${[...new Set(Object.values(D.trips).filter((t) => t.times.some((x) => x.stop === n.stop.stop_id)).map((t) => t.route_id))].map(badge).join(" ")}</small></div>`).join("")}`;
       }
     }

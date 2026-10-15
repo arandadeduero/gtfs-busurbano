@@ -19,9 +19,9 @@ líneas, paradas y horarios.
 
 ## Alcance
 - Dentro: búsqueda de destino con Nominatim (OSM), origen por geolocalización o toque
-  en el mapa, viajes **directos** (sin transbordos), próximas salidas, tramos a pie,
+  en el mapa, viajes **directos** (en este servicio no hay transbordos entre líneas), próximas salidas, tramos a pie,
   mapa OSM con Leaflet.
-- Fuera: transbordos, buses en vivo, autocompletado, favoritos.
+- Fuera: buses en vivo, autocompletado, favoritos.
 
 ## Restricciones
 - Sitio estático; los datos son los `.txt` GTFS de la raíz (`../*.txt` desde `/app/`).
@@ -85,8 +85,7 @@ GitHub Pages sólo da `Cache-Control: max-age=600`, así que se controla desde l
    universal de Google Maps, abre la app si está instalada y si no la web. Se abre con
    `target="_blank" rel="noopener"`. La construcción de la URL es una función pura de
    `core.js` con prueba en Node (coordenadas con 5 decimales, `travelmode` fijo).
-6. **Casos límite**: sin línea directa → mostrar paradas cercanas e indicar que haría
-   falta transbordo; sin más servicio hoy → primeras salidas de mañana; sin permiso de
+6. **Casos límite**: sin línea directa → mostrar las paradas más cercanas al destino; sin más servicio hoy → primeras salidas de mañana; sin permiso de
    ubicación → origen manual.
 
 ## Pruebas
