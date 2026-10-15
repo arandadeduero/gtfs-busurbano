@@ -1,0 +1,27 @@
+app/sw.js
+  s_7697c827860b08::t_718514c032372f 3,8
+app/app.js
+  s_7697c827860b08::t_718514c032372f 101,203-205
+images/google-maps.svg
+  s_7697c827860b08::t_45cab8f7bf3390 1
+app/app.css
+  s_7697c827860b08::t_718514c032372f 7-15,41,63-64,66-71
+app/index.html
+  s_7697c827860b08::t_718514c032372f 19-25
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "1d242b24f1382d422eef8568e9a41b722cbdd329",
+  "prompts": {},
+  "sessions": {
+    "s_7697c827860b08": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "51ac4274-7fe5-4a6e-9672-918f5c1c44f1",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Guillermo López <willyaranda@gmail.com>"
+    }
+  }
+}
