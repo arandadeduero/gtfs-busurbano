@@ -1,0 +1,19 @@
+docs/superpowers/specs/2026-10-15-app-donde-quiero-ir-design.md
+  s_7697c827860b08::t_c8367fffbd9293 27,35-59,84-85
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "102a2d34eae5d9ebce499a4e7405f5227b5bc908",
+  "prompts": {},
+  "sessions": {
+    "s_7697c827860b08": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "51ac4274-7fe5-4a6e-9672-918f5c1c44f1",
+        "model": "claude-sonnet-5-5"
+      },
+      "human_author": "Guillermo López <willyaranda@gmail.com>"
+    }
+  }
+}
