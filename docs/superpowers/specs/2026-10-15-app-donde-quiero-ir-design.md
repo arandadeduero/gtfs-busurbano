@@ -14,6 +14,9 @@ líneas, paradas y horarios.
   blanca porque no existe variante en blanco; `alt` y altura ~34 px, enlazado a la
   web del Ayuntamiento. Se añade a la lista de assets cacheados por el Service Worker.
 
+- Nombre: en todo texto visible (título, `<title>`, metadatos, avisos) se escribe
+  «Aranda de Duero» completo, nunca solo «Aranda».
+
 ## Alcance
 - Dentro: búsqueda de destino con Nominatim (OSM), origen por geolocalización o toque
   en el mapa, viajes **directos** (sin transbordos), próximas salidas, tramos a pie,
@@ -23,7 +26,7 @@ líneas, paradas y horarios.
 ## Restricciones
 - Sitio estático; los datos son los `.txt` GTFS de la raíz (`../*.txt` desde `/app/`).
 - UI en español, móvil primero, estilo coherente con `/mapa` (fuente Outfit, Leaflet).
-- Nominatim: sólo al enviar la búsqueda (sin autocompletar), `viewbox` de Aranda,
+- Nominatim: sólo al enviar la búsqueda (sin autocompletar), `viewbox` de Aranda de Duero,
   `bounded=1`, `countrycodes=es`, máx. 1 petición/s, resultados limitados a 5.
 - Zona horaria Europe/Madrid; servicios activos = calendar + calendar_dates.
 
@@ -66,7 +69,7 @@ GitHub Pages sólo da `Cache-Control: max-age=600`, así que se controla desde l
 ## Flujo
 1. **Destino**: campo de búsqueda → Nominatim → lista de hasta 5 resultados; también
    se puede tocar el mapa.
-2. **Origen**: geolocalización del navegador; si falla o queda fuera de Aranda, aviso y
+2. **Origen**: geolocalización del navegador; si falla o queda fuera de Aranda de Duero, aviso y
    selección manual en el mapa.
 3. **Emparejado**: paradas a ≤ 600 m del origen y del destino. Para cada viaje activo,
    pares (parada origen antes que parada destino por `stop_sequence`). Se elige la mejor
@@ -85,7 +88,7 @@ GitHub Pages sólo da `Cache-Control: max-age=600`, así que se controla desde l
 - Manual en navegador con respuesta de Nominatim simulada (para no abusar del servicio).
 
 ## Criterios de éxito
-- Dado un destino en Aranda, se muestra en < 2 s (tras cargar datos) la mejor línea
+- Dado un destino en Aranda de Duero, se muestra en < 2 s (tras cargar datos) la mejor línea
   directa con la próxima salida correcta respecto al calendario real.
 - En la segunda visita no hay descargas de datos ni assets (sólo la comprobación de
   `feed_info.txt`); un cambio de `APP_VERSION` o `feed_version` los renueva.
