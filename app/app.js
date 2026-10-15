@@ -17,6 +17,7 @@
   const CAT_ICON = { admin: "🏛", salud: "🏥", cultura: "🎭", turismo: "🏰", educacion: "🎓", deporte: "⚽", parque: "🌳",
     religion: "⛪", hotel: "🏨", compras: "🛍", farmacia: "💊", supermercado: "🛒", banco: "🏦", seguridad: "🚓", transporte: "🚉", trabajo: "🏭" };
 
+  const DEFAULT_HINT = "Escribe un lugar (te sugerimos mientras escribes) o toca el mapa.";
   const D = {};
   const S = { origin: null, originLabel: "", dest: null, destLabel: "", options: [], sel: 0, pick: null, picks: [], feedVersion: "" };
   let map, layer;
@@ -93,6 +94,7 @@
       L.marker([B.lat, B.lon], { icon: pin(col, "🚏") }).addTo(layer).bindTooltip("Baja", { permanent: true, direction: "left" });
       pts.push([A.lat, A.lon], [B.lat, B.lon], ...line);
     }
+    map.invalidateSize(); // el mapa cambia de alto al aparecer los resultados
     if (pts.length > 1) map.fitBounds(L.latLngBounds(pts).pad(.25));
     else if (pts.length === 1) map.setView(pts[0], 16);
   }
@@ -104,7 +106,6 @@
       h += `<ul class="picks">${S.picks.map((p, i) => `<li data-i="${i}">${esc(p.name)}<small>${esc(p.display)}</small></li>`).join("")}</ul>`;
     }
     if (S.dest) {
-      h += `<div class="dest"><b>${esc(S.destLabel)}</b>${S.destSub ? `<small>${esc(S.destSub)}</small>` : ""}</div>`;
       if (S.origin) h += `<a class="gmaps" target="_blank" rel="noopener" href="${esc(C.gmapsUrl(S.origin, S.dest))}"><img src="../images/google-maps.svg" alt="" width="18" height="26" />Ver en Google Maps</a>`;
     }
     if (S.dest && !S.origin) h += `<p class="note">Falta el origen: pulsa 📍 para usar tu ubicación o 🗺️ y toca el mapa.</p>`;
@@ -149,6 +150,7 @@
   }
   function setDest(lat, lon, label, sub) {
     S.dest = { lat, lon }; S.destLabel = label; S.destSub = sub || ""; S.picks = [];
+    $("form").classList.add("has-dest");
     $("q").value = label === "Punto en el mapa" ? "" : label;
     refresh();
   }
@@ -227,7 +229,7 @@
     layer = L.layerGroup().addTo(map);
     map.on("click", (e) => {
       const { lat, lng } = e.latlng;
-      if (S.pick === "origin") { S.pick = null; $("hint").textContent = ""; setOrigin(lat, lng, "Punto en el mapa"); }
+      if (S.pick === "origin") { S.pick = null; $("hint").textContent = DEFAULT_HINT; $("hint").classList.remove("pick"); setOrigin(lat, lng, "Punto en el mapa"); }
       else setDest(lat, lng, "Punto en el mapa");
     });
   }
@@ -241,7 +243,7 @@
       if (act >= 0 && act < sugg.length) return chooseSuggestion(act);
       hideSuggest(); search($("q").value);
     });
-    $("q").addEventListener("input", showSuggest);
+    $("q").addEventListener("input", () => { $("form").classList.remove("has-dest"); showSuggest(); });
     $("q").addEventListener("focus", showSuggest);
     $("q").addEventListener("keydown", (e) => {
       const n = $("suggest").children.length;
@@ -256,7 +258,7 @@
     });
     document.addEventListener("click", (e) => { if (!e.target.closest(".dest-field")) hideSuggest(); });
     $("btn-geo").addEventListener("click", useGeolocation);
-    $("btn-pick-origin").addEventListener("click", () => { S.pick = "origin"; $("hint").textContent = "Toca el mapa para elegir el origen."; });
+    $("btn-pick-origin").addEventListener("click", () => { S.pick = "origin"; $("hint").textContent = "Toca el mapa para elegir el origen."; $("hint").classList.add("pick"); });
     $("chips").innerHTML = PLACES.map((p, i) => `<button type="button" class="chip" data-i="${i}">${esc(p.label)}</button>`).join("");
     $("chips").addEventListener("click", (e) => {
       const b = e.target.closest(".chip"); if (!b) return;
