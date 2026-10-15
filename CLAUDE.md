@@ -24,7 +24,7 @@ la webapp `app/` («¿A dónde quieres ir?»). Sin build; `app/` cachea con un S
 - Texto visible en español y siempre «Aranda de Duero» completo (nunca solo «Aranda»).
 - Solo viajes directos: este servicio no tiene transbordos, no implementarlos.
 - Nominatim solo al enviar la búsqueda (sin autocompletar), máx. 1 petición/s.
-- Autocompletado local: lugares en `app/places.json` (coordenadas verificadas con Nominatim,
-  dentro de Aranda de Duero) + las paradas del GTFS; sin red. Nominatim solo al enviar.
+- Autocompletado local: lugares en `app/places.json` (extraídos de OpenStreetMap con Overpass, curados;
+  coordenadas dentro de Aranda de Duero, cada uno con `cat` y `tags`) + las paradas del GTFS; sin red. Nominatim solo al enviar.
 - La lógica pura va en `app/core.js` (con prueba); la UI en `app/app.js`.
 - Spec y mockup: `docs/superpowers/specs/` y `docs/superpowers/mockups/`.

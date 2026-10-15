@@ -1,6 +1,6 @@
 // Caché de /app/: assets versionados + datos GTFS versionados por feed_version.
 // Sube APP_VERSION al cambiar cualquier fichero de app/.
-const APP_VERSION = "2026.10.15-6";
+const APP_VERSION = "2026.10.15-7";
 const STATIC = "aranda-app-static-" + APP_VERSION;
 const DATA = "aranda-app-data";
 importScripts("core.js");

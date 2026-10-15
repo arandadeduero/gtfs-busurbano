@@ -14,6 +14,9 @@
     { label: "🎓 Institutos", q: "Instituto" },
   ];
 
+  const CAT_ICON = { admin: "🏛", salud: "🏥", cultura: "🎭", turismo: "🏰", educacion: "🎓", deporte: "⚽", parque: "🌳",
+    religion: "⛪", hotel: "🏨", compras: "🛍", seguridad: "🚓", transporte: "🚉", trabajo: "🏭" };
+
   const D = {};
   const S = { origin: null, originLabel: "", dest: null, destLabel: "", options: [], sel: 0, pick: null, picks: [], feedVersion: "" };
   let map, layer;
@@ -203,7 +206,7 @@
     sugg = suggestions(q); act = -1;
     const ul = $("suggest");
     if (!q.trim() || q.trim().length < 2) { ul.hidden = true; $("q").setAttribute("aria-expanded", "false"); return; }
-    ul.innerHTML = sugg.map((x, i) => `<li role="option" data-i="${i}"><span class="k">${x.kind === "parada" ? "🚏" : "📍"}</span><span>${esc(x.name)}</span></li>`).join("")
+    ul.innerHTML = sugg.map((x, i) => `<li role="option" data-i="${i}"><span class="k">${x.kind === "parada" ? "🚏" : CAT_ICON[x.cat] || "📍"}</span><span>${esc(x.name)}</span></li>`).join("")
       + `<li role="option" class="osm" data-osm="1"><span class="k">🔎</span><span>Buscar «${esc(q.trim())}» en OpenStreetMap</span></li>`;
     ul.hidden = false; $("q").setAttribute("aria-expanded", "true");
   }

@@ -125,6 +125,8 @@ test("suggest: sin acentos, por palabras y priorizando el comienzo", () => {
 
 test("places.json: coordenadas dentro de Aranda de Duero", () => {
   const places = JSON.parse(fs.readFileSync(path.join(ROOT, "app", "places.json"), "utf8"));
-  assert.ok(places.length > 5);
+  assert.ok(places.length > 50);
+  assert.strictEqual(new Set(places.map((p) => p.name)).size, places.length, "nombres duplicados");
+  places.forEach((p) => assert.ok(p.cat && p.tags, p.name + ": falta cat/tags"));
   places.forEach((p) => assert.ok(p.lat > 41.62 && p.lat < 41.72 && p.lon > -3.76 && p.lon < -3.62, p.name));
 });

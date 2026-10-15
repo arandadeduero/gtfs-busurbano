@@ -1,102 +1,721 @@
 [
  {
   "name": "Ayuntamiento de Aranda de Duero",
+  "cat": "admin",
   "lat": 41.67019,
-  "lon": -3.689687,
-  "tags": "ayuntamiento plaza"
+  "lon": -3.68971,
+  "tags": "ayuntamiento plaza concejalia"
  },
  {
-  "name": "Plaza Mayor",
-  "lat": 41.670464,
-  "lon": -3.688888,
+  "name": "Oficina de Turismo",
+  "cat": "turismo",
+  "lat": 41.66992,
+  "lon": -3.685,
+  "tags": "turismo informacion visitantes"
+ },
+ {
+  "name": "Casa de Cultura",
+  "cat": "cultura",
+  "lat": 41.67146,
+  "lon": -3.68772,
+  "tags": "cultura biblioteca"
+ },
+ {
+  "name": "Centro Cívico Virgen de las Viñas",
+  "cat": "admin",
+  "lat": 41.67172,
+  "lon": -3.67865,
+  "tags": "civico centro"
+ },
+ {
+  "name": "Centro Cívico de Sinovas",
+  "cat": "admin",
+  "lat": 41.70194,
+  "lon": -3.66472,
+  "tags": "civico sinovas"
+ },
+ {
+  "name": "Junta Vecinal de Sinovas",
+  "cat": "admin",
+  "lat": 41.70169,
+  "lon": -3.66434,
+  "tags": "sinovas"
+ },
+ {
+  "name": "Casa del Deporte",
+  "cat": "deporte",
+  "lat": 41.68101,
+  "lon": -3.68516,
+  "tags": "deportes"
+ },
+ {
+  "name": "Centro Tomás Pascual",
+  "cat": "admin",
+  "lat": 41.66342,
+  "lon": -3.69444,
   "tags": "centro"
  },
  {
+  "name": "Cruz Roja",
+  "cat": "salud",
+  "lat": 41.66364,
+  "lon": -3.69898,
+  "tags": "ambulancias"
+ },
+ {
+  "name": "Agencia Tributaria (AEAT)",
+  "cat": "admin",
+  "lat": 41.66885,
+  "lon": -3.68961,
+  "tags": "hacienda impuestos"
+ },
+ {
+  "name": "Oficina de empleo (ECyL)",
+  "cat": "admin",
+  "lat": 41.66775,
+  "lon": -3.68754,
+  "tags": "paro empleo ecyl"
+ },
+ {
+  "name": "Oficina del DNI",
+  "cat": "admin",
+  "lat": 41.68365,
+  "lon": -3.68453,
+  "tags": "dni pasaporte"
+ },
+ {
+  "name": "Seguridad Social (Tesorería)",
+  "cat": "admin",
+  "lat": 41.67202,
+  "lon": -3.68655,
+  "tags": "seguridad social inss"
+ },
+ {
+  "name": "Oficina de Correos",
+  "cat": "admin",
+  "lat": 41.66796,
+  "lon": -3.68916,
+  "tags": "correos"
+ },
+ {
+  "name": "Juzgado",
+  "cat": "admin",
+  "lat": 41.67267,
+  "lon": -3.67873,
+  "tags": "juzgados justicia"
+ },
+ {
+  "name": "Comisaría de Policía Nacional",
+  "cat": "seguridad",
+  "lat": 41.6834,
+  "lon": -3.68472,
+  "tags": "policia nacional"
+ },
+ {
+  "name": "Policía Local",
+  "cat": "seguridad",
+  "lat": 41.67086,
+  "lon": -3.69369,
+  "tags": "policia municipal"
+ },
+ {
+  "name": "Guardia Civil",
+  "cat": "seguridad",
+  "lat": 41.67278,
+  "lon": -3.6793,
+  "tags": "cuartel"
+ },
+ {
+  "name": "Parque de Bomberos",
+  "cat": "seguridad",
+  "lat": 41.66487,
+  "lon": -3.70176,
+  "tags": "bomberos"
+ },
+ {
   "name": "Estación de autobuses",
-  "lat": 41.670221,
-  "lon": -3.694904,
+  "cat": "transporte",
+  "lat": 41.67025,
+  "lon": -3.69483,
   "tags": "estacion bus autobuses"
  },
  {
   "name": "Hospital Santos Reyes",
-  "lat": 41.669653,
-  "lon": -3.691585,
+  "cat": "salud",
+  "lat": 41.66965,
+  "lon": -3.69155,
   "tags": "hospital urgencias sanidad"
  },
  {
   "name": "Centro de Salud Aranda Sur",
-  "lat": 41.666557,
-  "lon": -3.687706,
-  "tags": "centro de salud ambulatorio medico"
+  "cat": "salud",
+  "lat": 41.66656,
+  "lon": -3.68746,
+  "tags": "ambulatorio medico centro de salud"
  },
  {
   "name": "Centro de Salud Aranda Norte",
-  "lat": 41.672707,
-  "lon": -3.679998,
-  "tags": "centro de salud ambulatorio medico"
+  "cat": "salud",
+  "lat": 41.67269,
+  "lon": -3.67995,
+  "tags": "ambulatorio medico centro de salud"
  },
  {
-  "name": "Polideportivo Príncipe de Asturias",
-  "lat": 41.67075,
-  "lon": -3.675019,
-  "tags": "deportes polideportivo"
+  "name": "Centro Policlínico Aranda",
+  "cat": "salud",
+  "lat": 41.66626,
+  "lon": -3.68894,
+  "tags": "clinica medico"
  },
  {
-  "name": "Instituto Sandoval y Rojas",
-  "lat": 41.67298,
-  "lon": -3.672908,
-  "tags": "instituto ies colegio educacion"
+  "name": "Clínica Duero",
+  "cat": "salud",
+  "lat": 41.66708,
+  "lon": -3.69003,
+  "tags": "clinica medico"
  },
  {
-  "name": "Instituto Vela Zanetti",
-  "lat": 41.659948,
-  "lon": -3.68401,
-  "tags": "instituto ies colegio educacion"
+  "name": "Residencia La Luz",
+  "cat": "salud",
+  "lat": 41.66266,
+  "lon": -3.69539,
+  "tags": "residencia mayores hospital"
  },
  {
-  "name": "Biblioteca Municipal",
-  "lat": 41.671334,
-  "lon": -3.687747,
-  "tags": "biblioteca libros plaza del trigo"
+  "name": "Centro de Diálisis",
+  "cat": "salud",
+  "lat": 41.65807,
+  "lon": -3.69157,
+  "tags": "dialisis"
  },
  {
-  "name": "Piscinas cubiertas",
-  "lat": 41.663993,
-  "lon": -3.689267,
-  "tags": "piscina deportes"
+  "name": "Cine Club Duero",
+  "cat": "cultura",
+  "lat": 41.66966,
+  "lon": -3.68833,
+  "tags": "cine pelicula"
  },
  {
-  "name": "Museo del Tren",
-  "lat": 41.655016,
-  "lon": -3.687534,
-  "tags": "museo tren"
+  "name": "Cines Victoria",
+  "cat": "cultura",
+  "lat": 41.66746,
+  "lon": -3.71954,
+  "tags": "cine peliculas"
  },
  {
-  "name": "Museo Casa de las Bolas",
-  "lat": 41.67184,
-  "lon": -3.690691,
-  "tags": "museo"
+  "name": "Auditorio de la Casa de la Cultura",
+  "cat": "cultura",
+  "lat": 41.6715,
+  "lon": -3.68778,
+  "tags": "teatro auditorio"
  },
  {
   "name": "Centro Cultural Caja de Burgos",
-  "lat": 41.670885,
-  "lon": -3.687333,
-  "tags": "teatro cultura cine"
+  "cat": "cultura",
+  "lat": 41.6709,
+  "lon": -3.68734,
+  "tags": "teatro cultura exposiciones"
  },
  {
-  "name": "Casa de la Cultura (auditorio)",
-  "lat": 41.671504,
-  "lon": -3.687777,
-  "tags": "teatro cultura auditorio"
+  "name": "La Colmena Musical",
+  "cat": "cultura",
+  "lat": 41.65641,
+  "lon": -3.7104,
+  "tags": "musica escuela"
  },
  {
-  "name": "Juzgado",
-  "lat": 41.672671,
-  "lon": -3.678688,
-  "tags": "juzgados justicia"
+  "name": "Biblioteca Municipal",
+  "cat": "cultura",
+  "lat": 41.67133,
+  "lon": -3.68775,
+  "tags": "biblioteca libros plaza del trigo"
+ },
+ {
+  "name": "Museo Casa de las Bolas",
+  "cat": "turismo",
+  "lat": 41.67184,
+  "lon": -3.69068,
+  "tags": "museo"
+ },
+ {
+  "name": "Museo de Juegos Tradicionales",
+  "cat": "turismo",
+  "lat": 41.67014,
+  "lon": -3.68828,
+  "tags": "museo juegos"
+ },
+ {
+  "name": "Museo del Tren",
+  "cat": "turismo",
+  "lat": 41.65502,
+  "lon": -3.68753,
+  "tags": "museo tren"
+ },
+ {
+  "name": "Kiosco de la Música",
+  "cat": "turismo",
+  "lat": 41.67043,
+  "lon": -3.68909,
+  "tags": "plaza mayor"
+ },
+ {
+  "name": "Puente Medieval de las Tenerías",
+  "cat": "turismo",
+  "lat": 41.67211,
+  "lon": -3.69138,
+  "tags": "puente rio"
+ },
+ {
+  "name": "Puerta del Duero",
+  "cat": "turismo",
+  "lat": 41.67022,
+  "lon": -3.68981,
+  "tags": "murallas"
+ },
+ {
+  "name": "Monumento Villa de Aranda",
+  "cat": "turismo",
+  "lat": 41.67145,
+  "lon": -3.68881,
+  "tags": "monumento"
+ },
+ {
+  "name": "Arco de Sancti Spíritus",
+  "cat": "turismo",
+  "lat": 41.68038,
+  "lon": -3.68779,
+  "tags": "convento arco"
+ },
+ {
+  "name": "Centro Comercial Isilla",
+  "cat": "compras",
+  "lat": 41.67152,
+  "lon": -3.68714,
+  "tags": "tiendas supermercado comercial"
+ },
+ {
+  "name": "Iglesia de Santa María la Real",
+  "cat": "religion",
+  "lat": 41.67142,
+  "lon": -3.68913,
+  "tags": "iglesia"
+ },
+ {
+  "name": "Iglesia de San Juan",
+  "cat": "religion",
+  "lat": 41.67211,
+  "lon": -3.69057,
+  "tags": "iglesia"
+ },
+ {
+  "name": "Iglesia de Santa Catalina",
+  "cat": "religion",
+  "lat": 41.67012,
+  "lon": -3.67853,
+  "tags": "iglesia"
+ },
+ {
+  "name": "Iglesia de Santo Domingo",
+  "cat": "religion",
+  "lat": 41.66929,
+  "lon": -3.69169,
+  "tags": "iglesia"
+ },
+ {
+  "name": "Iglesia de la Veracruz",
+  "cat": "religion",
+  "lat": 41.67337,
+  "lon": -3.68505,
+  "tags": "iglesia"
+ },
+ {
+  "name": "Iglesia del Corazón de María",
+  "cat": "religion",
+  "lat": 41.66903,
+  "lon": -3.68612,
+  "tags": "iglesia"
+ },
+ {
+  "name": "Iglesia de San Nicolás de Bari",
+  "cat": "religion",
+  "lat": 41.70277,
+  "lon": -3.66276,
+  "tags": "iglesia sinovas"
+ },
+ {
+  "name": "Parroquia San Pedro Regalado",
+  "cat": "religion",
+  "lat": 41.6585,
+  "lon": -3.69021,
+  "tags": "iglesia parroquia"
+ },
+ {
+  "name": "Parroquia de San José",
+  "cat": "religion",
+  "lat": 41.66042,
+  "lon": -3.69464,
+  "tags": "iglesia parroquia"
+ },
+ {
+  "name": "Ermita de San Antonio Abad",
+  "cat": "religion",
+  "lat": 41.6759,
+  "lon": -3.68937,
+  "tags": "ermita"
+ },
+ {
+  "name": "Ermita de la Virgen de las Viñas",
+  "cat": "religion",
+  "lat": 41.68285,
+  "lon": -3.68639,
+  "tags": "ermita"
+ },
+ {
+  "name": "Monasterio de las Benedictinas",
+  "cat": "religion",
+  "lat": 41.66625,
+  "lon": -3.72146,
+  "tags": "monasterio convento"
+ },
+ {
+  "name": "Instituto Sandoval y Rojas",
+  "cat": "educacion",
+  "lat": 41.67294,
+  "lon": -3.6729,
+  "tags": "instituto ies colegio"
+ },
+ {
+  "name": "Instituto Vela Zanetti",
+  "cat": "educacion",
+  "lat": 41.66007,
+  "lon": -3.68407,
+  "tags": "instituto ies colegio"
+ },
+ {
+  "name": "Instituto Juan Martín El Empecinado",
+  "cat": "educacion",
+  "lat": 41.66331,
+  "lon": -3.70181,
+  "tags": "instituto ies colegio"
+ },
+ {
+  "name": "Escuela Oficial de Idiomas",
+  "cat": "educacion",
+  "lat": 41.66451,
+  "lon": -3.68903,
+  "tags": "idiomas eoi ingles"
+ },
+ {
+  "name": "Colegio Fernán González",
+  "cat": "educacion",
+  "lat": 41.66482,
+  "lon": -3.68979,
+  "tags": "colegio cp"
+ },
+ {
+  "name": "Colegio Nuestra Señora de Belén",
+  "cat": "educacion",
+  "lat": 41.66093,
+  "lon": -3.68748,
+  "tags": "colegio cp"
+ },
+ {
+  "name": "Colegio Santa María",
+  "cat": "educacion",
+  "lat": 41.65827,
+  "lon": -3.69425,
+  "tags": "colegio cp"
+ },
+ {
+  "name": "Colegio Castilla",
+  "cat": "educacion",
+  "lat": 41.6727,
+  "lon": -3.68469,
+  "tags": "colegio cp"
+ },
+ {
+  "name": "Colegio Simón de Colonia",
+  "cat": "educacion",
+  "lat": 41.67369,
+  "lon": -3.68926,
+  "tags": "colegio ceip"
+ },
+ {
+  "name": "Colegio Claret",
+  "cat": "educacion",
+  "lat": 41.66752,
+  "lon": -3.68486,
+  "tags": "colegio"
+ },
+ {
+  "name": "Colegio Santa Catalina I",
+  "cat": "educacion",
+  "lat": 41.67224,
+  "lon": -3.67268,
+  "tags": "colegio"
+ },
+ {
+  "name": "Colegio Santa Catalina II",
+  "cat": "educacion",
+  "lat": 41.67217,
+  "lon": -3.67369,
+  "tags": "colegio"
+ },
+ {
+  "name": "Colegio Santo Domingo de Guzmán",
+  "cat": "educacion",
+  "lat": 41.66527,
+  "lon": -3.69251,
+  "tags": "colegio"
+ },
+ {
+  "name": "Colegio Veracruz",
+  "cat": "educacion",
+  "lat": 41.67342,
+  "lon": -3.6849,
+  "tags": "colegio"
+ },
+ {
+  "name": "Colegio Las Francesas",
+  "cat": "educacion",
+  "lat": 41.66463,
+  "lon": -3.68939,
+  "tags": "colegio"
+ },
+ {
+  "name": "Colegio ICEDE",
+  "cat": "educacion",
+  "lat": 41.66202,
+  "lon": -3.69319,
+  "tags": "colegio"
+ },
+ {
+  "name": "Escuela Infantil Allendeduero",
+  "cat": "educacion",
+  "lat": 41.66736,
+  "lon": -3.70127,
+  "tags": "guarderia infantil"
+ },
+ {
+  "name": "Piscinas cubiertas (Piscina Municipal)",
+  "cat": "deporte",
+  "lat": 41.66378,
+  "lon": -3.6892,
+  "tags": "piscina deportes natacion"
+ },
+ {
+  "name": "Piscinas de verano Acapulco",
+  "cat": "deporte",
+  "lat": 41.68087,
+  "lon": -3.68578,
+  "tags": "piscina verano"
+ },
+ {
+  "name": "Polideportivo Chelva",
+  "cat": "deporte",
+  "lat": 41.65998,
+  "lon": -3.68819,
+  "tags": "deportes"
+ },
+ {
+  "name": "Polideportivo Príncipe de Asturias",
+  "cat": "deporte",
+  "lat": 41.67075,
+  "lon": -3.67502,
+  "tags": "deportes"
+ },
+ {
+  "name": "Pradosport",
+  "cat": "deporte",
+  "lat": 41.65354,
+  "lon": -3.70227,
+  "tags": "deportes"
+ },
+ {
+  "name": "Rocódromo",
+  "cat": "deporte",
+  "lat": 41.67141,
+  "lon": -3.67527,
+  "tags": "escalada"
+ },
+ {
+  "name": "Estadio Juan Carlos Higuero",
+  "cat": "deporte",
+  "lat": 41.66624,
+  "lon": -3.69901,
+  "tags": "futbol atletismo estadio"
+ },
+ {
+  "name": "Plaza de Toros",
+  "cat": "deporte",
+  "lat": 41.67705,
+  "lon": -3.68485,
+  "tags": "toros plaza fiestas"
+ },
+ {
+  "name": "Zona deportiva Costaján",
+  "cat": "deporte",
+  "lat": 41.70776,
+  "lon": -3.68353,
+  "tags": "costajan"
+ },
+ {
+  "name": "Camping Costaján",
+  "cat": "turismo",
+  "lat": 41.70249,
+  "lon": -3.68677,
+  "tags": "camping costajan"
+ },
+ {
+  "name": "Parque Virgen de las Viñas",
+  "cat": "parque",
+  "lat": 41.6809,
+  "lon": -3.68744,
+  "tags": "parque jardin"
+ },
+ {
+  "name": "Parque de la Isla",
+  "cat": "parque",
+  "lat": 41.66874,
+  "lon": -3.68502,
+  "tags": "parque jardin"
+ },
+ {
+  "name": "Parque Allendeduero",
+  "cat": "parque",
+  "lat": 41.66436,
+  "lon": -3.68628,
+  "tags": "parque jardin"
+ },
+ {
+  "name": "Parque General Gutiérrez",
+  "cat": "parque",
+  "lat": 41.66093,
+  "lon": -3.69862,
+  "tags": "parque jardin"
+ },
+ {
+  "name": "Parque La Huerta",
+  "cat": "parque",
+  "lat": 41.66839,
+  "lon": -3.67941,
+  "tags": "parque jardin"
+ },
+ {
+  "name": "Parque María Pacheco",
+  "cat": "parque",
+  "lat": 41.67518,
+  "lon": -3.68367,
+  "tags": "parque jardin"
+ },
+ {
+  "name": "Parque Príncipe de Asturias",
+  "cat": "parque",
+  "lat": 41.67098,
+  "lon": -3.67546,
+  "tags": "parque jardin"
+ },
+ {
+  "name": "Parque San Antón",
+  "cat": "parque",
+  "lat": 41.67626,
+  "lon": -3.68936,
+  "tags": "parque jardin"
+ },
+ {
+  "name": "Parque el Barriles",
+  "cat": "parque",
+  "lat": 41.67141,
+  "lon": -3.69227,
+  "tags": "parque jardin"
+ },
+ {
+  "name": "Glorieta de la Cruz Roja",
+  "cat": "parque",
+  "lat": 41.67794,
+  "lon": -3.68444,
+  "tags": "parque jardin"
+ },
+ {
+  "name": "Hotel Alisi",
+  "cat": "hotel",
+  "lat": 41.66769,
+  "lon": -3.69073,
+  "tags": "hotel alojamiento"
+ },
+ {
+  "name": "Hotel El Cruce",
+  "cat": "hotel",
+  "lat": 41.67651,
+  "lon": -3.69639,
+  "tags": "hotel alojamiento"
+ },
+ {
+  "name": "Hotel Essenzia de Castilla",
+  "cat": "hotel",
+  "lat": 41.66581,
+  "lon": -3.69133,
+  "tags": "hotel alojamiento"
+ },
+ {
+  "name": "Hostal Rosales",
+  "cat": "hotel",
+  "lat": 41.66589,
+  "lon": -3.69192,
+  "tags": "hostal alojamiento"
+ },
+ {
+  "name": "Hotel Aranda",
+  "cat": "hotel",
+  "lat": 41.67645,
+  "lon": -3.68578,
+  "tags": "hotel alojamiento"
+ },
+ {
+  "name": "Hotel Bancho",
+  "cat": "hotel",
+  "lat": 41.66123,
+  "lon": -3.69199,
+  "tags": "hotel alojamiento"
+ },
+ {
+  "name": "Hotel Julia",
+  "cat": "hotel",
+  "lat": 41.67066,
+  "lon": -3.68487,
+  "tags": "hotel alojamiento"
+ },
+ {
+  "name": "Hotel Montehermoso",
+  "cat": "hotel",
+  "lat": 41.70981,
+  "lon": -3.688,
+  "tags": "hotel alojamiento costajan"
+ },
+ {
+  "name": "Hotel Torremilanos",
+  "cat": "hotel",
+  "lat": 41.65571,
+  "lon": -3.72993,
+  "tags": "hotel alojamiento bodega"
+ },
+ {
+  "name": "Hotel V Ciudad",
+  "cat": "hotel",
+  "lat": 41.66188,
+  "lon": -3.69228,
+  "tags": "hotel alojamiento"
+ },
+ {
+  "name": "Plaza Mayor",
+  "cat": "turismo",
+  "lat": 41.670464,
+  "lon": -3.688888,
+  "tags": "centro plaza"
  },
  {
   "name": "Michelin",
+  "cat": "trabajo",
   "lat": 41.657366,
   "lon": -3.68275,
   "tags": "fabrica trabajo poligono"
