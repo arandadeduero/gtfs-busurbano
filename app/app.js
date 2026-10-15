@@ -15,7 +15,7 @@
   ];
 
   const CAT_ICON = { admin: "🏛", salud: "🏥", cultura: "🎭", turismo: "🏰", educacion: "🎓", deporte: "⚽", parque: "🌳",
-    religion: "⛪", hotel: "🏨", compras: "🛍", seguridad: "🚓", transporte: "🚉", trabajo: "🏭" };
+    religion: "⛪", hotel: "🏨", compras: "🛍", farmacia: "💊", supermercado: "🛒", banco: "🏦", seguridad: "🚓", transporte: "🚉", trabajo: "🏭" };
 
   const D = {};
   const S = { origin: null, originLabel: "", dest: null, destLabel: "", options: [], sel: 0, pick: null, picks: [], feedVersion: "" };

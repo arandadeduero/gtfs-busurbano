@@ -719,5 +719,320 @@
   "lat": 41.657366,
   "lon": -3.68275,
   "tags": "fabrica trabajo poligono"
+ },
+ {
+  "name": "Alcampo (cerca de Calle Duero)",
+  "cat": "supermercado",
+  "lat": 41.65871,
+  "lon": -3.69401,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Alcampo (Calle Burgo de Osma 54)",
+  "cat": "supermercado",
+  "lat": 41.66663,
+  "lon": -3.68834,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Alcampo (Avenida Castilla 20)",
+  "cat": "supermercado",
+  "lat": 41.66766,
+  "lon": -3.69111,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Alcampo (Calle Miranda do Douro 1)",
+  "cat": "supermercado",
+  "lat": 41.66963,
+  "lon": -3.68609,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Alcampo (cerca de Avenida Burgos 1)",
+  "cat": "supermercado",
+  "lat": 41.6704,
+  "lon": -3.67919,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Alcampo (cerca de Calle San Francisco 41)",
+  "cat": "supermercado",
+  "lat": 41.67436,
+  "lon": -3.68578,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Alcampo (cerca de Calle San Francisco 41) 2",
+  "cat": "supermercado",
+  "lat": 41.67712,
+  "lon": -3.69083,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Alcampo (cerca de Carretera Sinovas Bloques 3-5-7-9)",
+  "cat": "supermercado",
+  "lat": 41.67858,
+  "lon": -3.68569,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Alimentación Bulrum",
+  "cat": "supermercado",
+  "lat": 41.66732,
+  "lon": -3.68992,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "BBVA (cerca de Calle Burgo de Osma)",
+  "cat": "banco",
+  "lat": 41.66634,
+  "lon": -3.69092,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "BBVA (cerca de Arco Isilla)",
+  "cat": "banco",
+  "lat": 41.67169,
+  "lon": -3.68544,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Banco Sabadell",
+  "cat": "banco",
+  "lat": 41.67293,
+  "lon": -3.68579,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Banco Santander (cerca de Calle Las Francesas)",
+  "cat": "banco",
+  "lat": 41.66553,
+  "lon": -3.69135,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Banco Santander (cerca de Arco Isilla)",
+  "cat": "banco",
+  "lat": 41.67207,
+  "lon": -3.6852,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Bankinter",
+  "cat": "banco",
+  "lat": 41.66991,
+  "lon": -3.68525,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Caixabank (cerca de Plaza Mediterráneo)",
+  "cat": "banco",
+  "lat": 41.65994,
+  "lon": -3.69291,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Caixabank (cerca de Calle Burgo de Osma)",
+  "cat": "banco",
+  "lat": 41.66597,
+  "lon": -3.69096,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Caixabank (cerca de Plaza Jardines de Don Diego)",
+  "cat": "banco",
+  "lat": 41.67053,
+  "lon": -3.68515,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Caja de Burgos",
+  "cat": "banco",
+  "lat": 41.67073,
+  "lon": -3.68113,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Cajamar",
+  "cat": "banco",
+  "lat": 41.66927,
+  "lon": -3.68643,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Cajaviva Caja Rural (Plaza Jardines de Don Diego)",
+  "cat": "banco",
+  "lat": 41.67031,
+  "lon": -3.68495,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Cajaviva Caja Rural (Avenida Castilla 185)",
+  "cat": "banco",
+  "lat": 41.66126,
+  "lon": -3.69211,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Farmacia Amparo Sanz Hernán",
+  "cat": "farmacia",
+  "lat": 41.67445,
+  "lon": -3.68601,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Farmacia Ana Mª Garcia Hernando",
+  "cat": "farmacia",
+  "lat": 41.66312,
+  "lon": -3.69093,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Farmacia Ana Mª Victorias Gonzalez Lafont",
+  "cat": "farmacia",
+  "lat": 41.66681,
+  "lon": -3.68816,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Farmacia Ana Prada de las Heras",
+  "cat": "farmacia",
+  "lat": 41.67132,
+  "lon": -3.6855,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Farmacia Blanca Portela Arribas",
+  "cat": "farmacia",
+  "lat": 41.67019,
+  "lon": -3.68811,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Farmacia Carlos Gómez Sáiz",
+  "cat": "farmacia",
+  "lat": 41.67381,
+  "lon": -3.68286,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Farmacia Elsa Álvaro Reyzabal",
+  "cat": "farmacia",
+  "lat": 41.65983,
+  "lon": -3.69367,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Farmacia Ignacio de Santiago Herrero",
+  "cat": "farmacia",
+  "lat": 41.67084,
+  "lon": -3.67785,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Farmacia Inmaculada de Lama Arenales",
+  "cat": "farmacia",
+  "lat": 41.66129,
+  "lon": -3.68933,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Farmacia Julián Lázaro Cebas",
+  "cat": "farmacia",
+  "lat": 41.67018,
+  "lon": -3.68864,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Farmacia Miguel Blanco Planas",
+  "cat": "farmacia",
+  "lat": 41.6707,
+  "lon": -3.68101,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Farmacia Rosario Berdugo Lazuén",
+  "cat": "farmacia",
+  "lat": 41.6657,
+  "lon": -3.69132,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Frucarbo",
+  "cat": "supermercado",
+  "lat": 41.66945,
+  "lon": -3.70417,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Hermanos de Blas",
+  "cat": "supermercado",
+  "lat": 41.67101,
+  "lon": -3.68213,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Ibercaja (Avenida Castilla 68)",
+  "cat": "banco",
+  "lat": 41.66147,
+  "lon": -3.69208,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Ibercaja (cerca de Arco Isilla)",
+  "cat": "banco",
+  "lat": 41.67118,
+  "lon": -3.6849,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Laboral Kutxa",
+  "cat": "banco",
+  "lat": 41.67043,
+  "lon": -3.68571,
+  "tags": "banco cajero oficina"
+ },
+ {
+  "name": "Lidl",
+  "cat": "supermercado",
+  "lat": 41.68576,
+  "lon": -3.68478,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Lupa",
+  "cat": "supermercado",
+  "lat": 41.66307,
+  "lon": -3.69323,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Mercadona (Calle Burgo de Osma 28)",
+  "cat": "supermercado",
+  "lat": 41.66745,
+  "lon": -3.68884,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Mercadona (Calle Carrequemada 38)",
+  "cat": "supermercado",
+  "lat": 41.67191,
+  "lon": -3.6822,
+  "tags": "supermercado compra comida tienda"
+ },
+ {
+  "name": "Parafarmacia Ortosalud La Ribera",
+  "cat": "farmacia",
+  "lat": 41.66894,
+  "lon": -3.69273,
+  "tags": "farmacia medicamentos botica"
+ },
+ {
+  "name": "Unicaja Banco",
+  "cat": "banco",
+  "lat": 41.66989,
+  "lon": -3.68571,
+  "tags": "banco cajero oficina"
  }
 ]
