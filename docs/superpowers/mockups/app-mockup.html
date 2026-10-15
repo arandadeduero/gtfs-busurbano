@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MOCKUP · /app/ Bus Urbano Aranda</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; }
+body { font-family:"Outfit",-apple-system,"Segoe UI",Roboto,sans-serif; color:#333; background:#e9f4f9; display:flex; flex-direction:column; }
+header.top { background:linear-gradient(135deg,#3cb4e5,#0083c1); color:#fff; padding:.6rem 1rem; display:flex; align-items:center; gap:1rem; box-shadow:0 2px 10px rgba(0,0,0,.15); z-index:1000; }
+header.top h1 { font-size:1.15rem; flex:1; }
+header.top a { color:#fff; text-decoration:none; font-weight:600; font-size:.85rem; background:rgba(255,255,255,.18); padding:.3rem .7rem; border-radius:5px; }
+.ribbon { background:#fff3cd; color:#7a5b00; font-size:.78rem; text-align:center; padding:.25rem; }
+main { flex:1; display:flex; min-height:0; }
+#panel { width:410px; max-width:100%; background:#fff; border-right:1px solid #d5e3ea; display:flex; flex-direction:column; min-height:0; overflow:auto; }
+#map { flex:1; min-width:0; }
+.search { padding:1rem; border-bottom:1px solid #d5e3ea; background:#f4f9fb; }
+.field { display:flex; align-items:center; gap:.6rem; background:#fff; border:1px solid #b9cbd4; border-radius:8px; padding:.5rem .7rem; margin-bottom:.5rem; }
+.field .dot { width:12px; height:12px; border-radius:50%; flex:none; }
+.field .o { background:#0083c1; } .field .d { background:#e53935; border-radius:2px; }
+.field input { border:0; outline:0; flex:1; font:inherit; background:transparent; min-width:0; }
+.field button { border:0; background:#0083c1; color:#fff; border-radius:6px; padding:.3rem .7rem; font:inherit; font-weight:600; cursor:pointer; }
+.hint { font-size:.78rem; color:#557; }
+.chips { display:flex; gap:.4rem; flex-wrap:wrap; margin-top:.4rem; }
+.chip { font-size:.8rem; padding:.2rem .6rem; border:1px solid #b9cbd4; border-radius:99px; background:#fff; color:#0083c1; cursor:pointer; }
+.sec { padding:.8rem 1rem .2rem; font-size:.75rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:#557; }
+.dest { margin:.5rem 1rem 0; padding:.6rem .8rem; border:1px solid #d5e3ea; border-radius:8px; font-size:.9rem; }
+.dest b { display:block; }
+.dest small { color:#557; }
+.card { margin:.6rem 1rem; border:1px solid #d5e3ea; border-left:6px solid; border-radius:8px; padding:.7rem .8rem; cursor:pointer; }
+.card.sel { box-shadow:0 0 0 2px #0083c1 inset; background:#f2faff; }
+.card .top { display:flex; align-items:center; gap:.5rem; }
+.badge { display:inline-block; min-width:2rem; text-align:center; padding:.1rem .5rem; border-radius:4px; color:#fff; font-weight:700; font-size:.85rem; }
+.card .top .dir { flex:1; font-size:.85rem; color:#557; }
+.card .top .tot { font-weight:700; font-size:1.05rem; }
+.legs { margin:.6rem 0 .4rem; font-size:.85rem; }
+.leg { display:flex; gap:.6rem; padding:.2rem 0; }
+.leg .ic { width:1.3rem; text-align:center; }
+.deps { display:flex; gap:.4rem; margin-top:.3rem; }
+.dep { background:#eef7fb; border-radius:6px; padding:.25rem .5rem; font-size:.85rem; text-align:center; }
+.dep b { display:block; font-size:1rem; }
+.dep.next { background:#0083c1; color:#fff; }
+.nolines { margin:.6rem 1rem; padding:.6rem .8rem; background:#fff8e1; border-radius:8px; font-size:.85rem; color:#7a5b00; }
+.legend { padding:.8rem 1rem; font-size:.72rem; color:#889; }
+@media (max-width:760px) {
+  main { flex-direction:column-reverse; }
+  #panel { width:100%; max-height:58%; border-right:0; border-top:1px solid #d5e3ea; }
+  #map { min-height:40%; }
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>🚌 ¿A dónde quieres ir? · Aranda</h1>
+  <a href="#">Mapa de líneas</a>
+</header>
+<div class="ribbon">MOCKUP · datos y horarios de ejemplo (no calculados)</div>
+<main>
+  <aside id="panel">
+    <div class="search">
+      <div class="field"><span class="dot o"></span><input value="Mi ubicación · Calle San Francisco 41" aria-label="Origen" /></div>
+      <div class="field"><span class="dot d"></span><input value="Hospital Santos Reyes" aria-label="Destino" /><button>Buscar</button></div>
+      <div class="hint">Busca un lugar, calle o toca el mapa. Salida: ahora (jueves 15 oct, 19:16).</div>
+      <div class="chips"><span class="chip">🏥 Hospital</span><span class="chip">🚉 Estación de autobuses</span><span class="chip">🏛 Plaza Mayor</span><span class="chip">🎓 Institutos</span></div>
+    </div>
+
+    <div class="dest"><b>Hospital Santos Reyes</b><small>Calle Ruperta Baraya 5 · Aranda de Duero (OpenStreetMap)</small></div>
+
+    <div class="sec">Opciones directas · 2</div>
+
+    <div class="card sel" style="border-left-color:#F31212">
+      <div class="top"><span class="badge" style="background:#F31212">L1</span><span class="dir">Circular · sentido Plaza Mayor</span><span class="tot">19 min</span></div>
+      <div class="legs">
+        <div class="leg"><span class="ic">🚶</span><span>3 min · 220 m hasta <b>Calle San Francisco 41</b></span></div>
+        <div class="leg"><span class="ic">🚌</span><span>6 paradas · 11 min</span></div>
+        <div class="leg"><span class="ic">🚶</span><span>5 min · 350 m desde <b>Calle Ruperta Baraya (Hospital)</b></span></div>
+      </div>
+      <div class="hint">Próximas salidas · llegada al destino 19:35</div>
+      <div class="deps">
+        <div class="dep next"><b>19:24</b>en 8 min</div>
+        <div class="dep"><b>19:54</b>en 38 min</div>
+        <div class="dep"><b>20:24</b>en 68 min</div>
+      </div>
+    </div>
+
+    <div class="card" style="border-left-color:#05A0C7">
+      <div class="top"><span class="badge" style="background:#05A0C7">L2</span><span class="dir">Polígono Industrial · Institutos</span><span class="tot">27 min</span></div>
+      <div class="legs">
+        <div class="leg"><span class="ic">🚶</span><span>7 min · 540 m hasta <b>Arco Isilla</b></span></div>
+        <div class="leg"><span class="ic">🚌</span><span>4 paradas · 14 min</span></div>
+        <div class="leg"><span class="ic">🚶</span><span>6 min · 410 m desde <b>Rotonda (estación autobús)</b></span></div>
+      </div>
+      <div class="hint">Próximas salidas · llegada al destino 19:49</div>
+      <div class="deps">
+        <div class="dep next"><b>19:31</b>en 15 min</div>
+        <div class="dep"><b>20:16</b>en 60 min</div>
+      </div>
+    </div>
+
+    <div class="nolines">ℹ️ <b>Sin línea directa</b> aparecería aquí cuando no haya viaje sin transbordo: mostraríamos las paradas más cercanas a tu destino y qué líneas las sirven.</div>
+    <div class="legend">Datos GTFS v1 · cacheados en este dispositivo (funciona sin conexión) · Mapa © OpenStreetMap · Búsqueda Nominatim</div>
+  </aside>
+  <div id="map"></div>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map = L.map('map').setView([41.6705,-3.6875], 15);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+const origin=[41.67514,-3.68587], dest=[41.66912,-3.69180];
+const stopA=[41.675138,-3.685868], stopB=[41.669202,-3.691206];
+const busPath=[stopA,[41.673029,-3.685631],[41.671538,-3.685160],[41.669905,-3.688445],[41.669202,-3.691206]];
+// L1 en su color, tramo a pie punteado
+L.polyline(busPath,{color:'#F31212',weight:6,opacity:.9}).addTo(map);
+L.polyline([origin,stopA],{color:'#0083c1',weight:4,dashArray:'2 8'}).addTo(map);
+L.polyline([stopB,dest],{color:'#0083c1',weight:4,dashArray:'2 8'}).addTo(map);
+const dot=(c,t)=>L.divIcon({className:'',html:`<div style="background:${c};color:#fff;border:2px solid #fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px rgba(0,0,0,.4);font-size:13px">${t}</div>`,iconSize:[26,26],iconAnchor:[13,13]});
+L.marker(origin,{icon:dot('#0083c1','●')}).addTo(map).bindTooltip('Tú',{permanent:true,direction:'top'});
+L.marker(dest,{icon:dot('#e53935','★')}).addTo(map).bindTooltip('Hospital Santos Reyes',{permanent:true,direction:'top'});
+L.marker(stopA,{icon:dot('#F31212','🚏')}).addTo(map).bindTooltip('Sube · 19:24',{permanent:true,direction:'right'});
+L.marker(stopB,{icon:dot('#F31212','🚏')}).addTo(map).bindTooltip('Baja · 19:30',{permanent:true,direction:'left'});
+map.fitBounds(L.latLngBounds([origin,dest]).pad(.3));
+</script>
+</body>
+</html>
