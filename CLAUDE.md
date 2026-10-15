@@ -55,6 +55,11 @@ Qué actualizar:
 - `tests/test_gtfs.py`: añadir pruebas de festivos y vacaciones del año nuevo.
 - Verificar con `python3 -m unittest discover -s tests -v`.
 
+Hay además una **rutina programada en la nube** (claude.ai/code/routines/trig_01Ga18PguBeby3zPcNxEYRk6)
+que el 1 de octubre a las 9:00 (Madrid) abre un issue «Actualizar festivos y calendario
+escolar de <año>» en este repo con la checklist. Si se cambia el procedimiento, actualizar
+también su prompt.
+
 ### 2. Puntos de interés del autocompletado (`app/places.json`) — revisar ~cada 12 meses
 Los lugares vienen de OpenStreetMap (Overpass), curados a mano. Para actualizarlos:
 1. `python3 tools/check_places.py` → lista nuevos elementos de OSM no incluidos y lugares
