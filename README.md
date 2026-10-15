@@ -85,3 +85,10 @@ Se ejecutan en GitHub Actions (`tests.yml`) en cada push y pull request, junto c
 ## Mapa y horarios
 
 `mapa.html` es un visor (Leaflet + OpenStreetMap) que lee los `.txt` de este mismo repositorio: líneas, paradas con próximas salidas, tablas de horarios por fecha y posición estimada de los buses según el horario. Se publica con GitHub Pages junto a `index.html`.
+
+### App «¿A dónde quieres ir?» (`app/`)
+
+`app/` (https://…/app/) es una webapp estática para planificar un viaje en bus urbano por Aranda de Duero: se busca un destino con la búsqueda de OpenStreetMap (Nominatim), se toma el origen de la ubicación del dispositivo o del mapa y se muestran las líneas directas con sus próximas salidas, los tramos a pie y un enlace «Ver en Google Maps» en modo transporte público.
+
+- Lógica pura en `app/core.js`, probada con `node --test tests/test_app_core.js`.
+- Los ficheros se cachean con un Service Worker (`app/sw.js`): **al cambiar ficheros de `app/` hay que subir `APP_VERSION` en `sw.js`, y al publicar datos GTFS nuevos hay que subir `feed_version` en `feed_info.txt`**; si no, los usuarios seguirán viendo la versión cacheada.

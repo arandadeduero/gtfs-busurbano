@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¿A dónde quieres ir? - Bus Urbano de Aranda de Duero</title>
+    <meta name="description" content="Dime a dónde quieres ir en Aranda de Duero y te digo qué autobús urbano coger y a qué hora sale." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%9A%8C%3C/text%3E%3C/svg%3E" />
+    <link rel="preload" href="../fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="../fonts/outfit.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="logo" href="https://www.arandadeduero.es/" target="_blank" rel="noopener">
+        <img src="../images/ayuntamiento.png" alt="Ayuntamiento de Aranda de Duero" />
+      </a>
+      <h1>🚌 ¿A dónde quieres ir? · Aranda de Duero</h1>
+      <a class="nav" href="../mapa.html">Mapa de líneas</a>
+    </header>
+    <main>
+      <aside id="panel">
+        <form class="search" id="form" autocomplete="off">
+          <div class="field">
+            <span class="dot o"></span>
+            <input id="origin-label" value="Sin origen" readonly aria-label="Origen" />
+            <button type="button" id="btn-geo" title="Usar mi ubicación">📍</button>
+            <button type="button" id="btn-pick-origin" title="Elegir origen en el mapa">🗺️</button>
+          </div>
+          <div class="field">
+            <span class="dot d"></span>
+            <input id="q" type="search" placeholder="¿A dónde quieres ir? (hospital, calle, plaza…)" aria-label="Destino" />
+            <button type="submit" class="primary">Buscar</button>
+          </div>
+          <p class="hint" id="hint">Escribe un lugar o toca el mapa para elegir destino.</p>
+          <div class="chips" id="chips"></div>
+        </form>
+        <p id="status" role="status">Cargando datos…</p>
+        <section id="results"></section>
+        <p class="legend" id="legend"></p>
+      </aside>
+      <div id="map"></div>
+    </main>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="core.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
